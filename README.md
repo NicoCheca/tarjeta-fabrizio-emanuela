@@ -15,7 +15,7 @@ nunca muestra un dato inventado.
 | Dato | Campo | Si está vacío |
 | --- | --- | --- |
 | Hora de la ceremonia y de la fiesta | `ceremonyTime`, `receptionTime` | Dice "horarios a confirmar" y agenda el día completo |
-| Número de WhatsApp para confirmar | `whatsapp` (con código de país) | La sección de confirmación avisa que pronto se informa |
+| Contactos de WhatsApp para confirmar (uno o más) | `contacts` (nombre y número con código de país) | La sección de confirmación avisa que pronto se informa |
 | Fecha límite para confirmar | `rsvpDeadline` | No se menciona |
 | IBAN y titular para regalos | `gift` | La tarjeta de regalos no se muestra |
 | Playlist de Spotify | `playlistUrl` | Se sugieren canciones por WhatsApp |

@@ -32,9 +32,19 @@ export function formatDeadline(locale: Locale): string | null {
   }).format(new Date(`${event.rsvpDeadline}T12:00:00${event.utcOffset}`));
 }
 
-/** Link a WhatsApp con mensaje precargado, o null si todavía no hay número. */
-export function whatsappUrl(message: string): string | null {
-  const digits = event.whatsapp.replace(/[^\d]/g, '');
+/** Link a WhatsApp con mensaje precargado, o null si el número está vacío. */
+export function whatsappUrl(phone: string, message: string): string | null {
+  const digits = phone.replace(/[^\d]/g, '');
   if (!digits) return null;
   return `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
+}
+
+/** Contactos con número cargado, cada uno con su link. */
+export function contactLinks(message: string): { name: string; href: string }[] {
+  const out: { name: string; href: string }[] = [];
+  for (const c of event.contacts) {
+    const href = whatsappUrl(c.whatsapp, message);
+    if (href) out.push({ name: c.name, href });
+  }
+  return out;
 }

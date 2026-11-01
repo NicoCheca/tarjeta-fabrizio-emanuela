@@ -29,8 +29,11 @@ export const event = {
     website: 'https://www.instagram.com/municipio1815/',
   },
 
-  /** WhatsApp para confirmar asistencia, con código de país. Vacío = los botones avisan que falta. */
-  whatsapp: '',
+  /** Contactos de WhatsApp para confirmar, con código de país. Lista vacía = la tarjeta avisa que falta. */
+  contacts: [
+    { name: 'Emanuela', whatsapp: '+39 353 308 7305' },
+    { name: 'Fabrizio', whatsapp: '+39 351 945 1955' },
+  ],
 
   /** Fecha límite para confirmar (YYYY-MM-DD). Vacío = no se menciona. */
   rsvpDeadline: '',

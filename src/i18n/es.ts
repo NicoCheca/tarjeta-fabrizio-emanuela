@@ -79,7 +79,7 @@ export const es: Dict = {
     eyebrow: 'Confirmación',
     textNoDeadline: '¡Los esperamos! Confirmen escribiéndonos por WhatsApp.',
     pending: 'Pronto les contamos cómo confirmar la asistencia.',
-    cta: 'Confirmar por WhatsApp',
+    cta: 'WhatsApp',
     message:
       '¡Hola! Confirmo mi asistencia a su casamiento del 28 de agosto de 2027.\nNombre y apellido: \nCantidad de personas: \nIntolerancias o alergias: ',
   },

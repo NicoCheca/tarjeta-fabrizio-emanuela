@@ -1,13 +1,13 @@
 ---
 import { event, type Locale } from '../config';
-import { getDict, whatsappUrl } from '../i18n';
+import { getDict, contactLinks } from '../i18n';
 
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
 const t = getDict(locale);
-const playlistHref = event.playlistUrl || whatsappUrl(t.info.playlist.message);
+const playlistHref = event.playlistUrl || contactLinks(t.info.playlist.message)[0]?.href;
 const showGift = Boolean(event.gift.iban);
 ---
 

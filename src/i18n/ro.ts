@@ -79,7 +79,7 @@ export const ro: Dict = {
     eyebrow: 'Confirmare',
     textNoDeadline: 'Vă așteptăm! Confirmați scriindu-ne pe WhatsApp.',
     pending: 'În curând vă spunem cum să confirmați prezența.',
-    cta: 'Confirmă pe WhatsApp',
+    cta: 'WhatsApp',
     message:
       'Salut! Confirm prezența mea la nunta voastră din 28 august 2027.\nNume și prenume: \nNumăr de persoane: \nIntoleranțe sau alergii: ',
   },

@@ -77,7 +77,7 @@ export const it = {
     eyebrow: 'Conferma',
     textNoDeadline: 'Vi aspettiamo! Confermate scrivendoci su WhatsApp.',
     pending: 'A breve vi diremo come confermare la presenza.',
-    cta: 'Conferma su WhatsApp',
+    cta: 'WhatsApp',
     message:
       'Ciao! Confermo la mia presenza al vostro matrimonio del 28 agosto 2027.\nNome e cognome: \nNumero di persone: \nIntolleranze o allergie: ',
   },
