@@ -41,7 +41,7 @@ const patternVars = `--pat-majolica:${majolica};--pat-stripes:${stripes};--pat-p
 
     <Font cssVariable="--font-display" preload />
     <Font cssVariable="--font-body" preload />
-    <Font cssVariable="--font-script" />
+    <Font cssVariable="--font-script" preload />
 
     {
       /* Primera visita sin prefijo: si el navegador está en español o rumano, llevarlo a su idioma. */
@@ -50,9 +50,10 @@ const patternVars = `--pat-majolica:${majolica};--pat-stripes:${stripes};--pat-p
           try {
             if (!localStorage.getItem('lang')) {
               const nav = (navigator.language || '').slice(0, 2).toLowerCase();
-              if (others.includes(nav)) {
+              const alt = document.querySelector('link[rel="alternate"][hreflang="' + nav + '"]');
+              if (others.includes(nav) && alt) {
                 localStorage.setItem('lang', nav);
-                location.replace(location.pathname.replace(/\/$/, '') + '/' + nav + '/' + location.hash);
+                location.replace(alt.href + location.search + location.hash);
               }
             }
           } catch {}

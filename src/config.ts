@@ -1,6 +1,7 @@
 /**
  * Datos del evento. Todo lo que cambia de una boda a otra vive acá.
- * Los valores marcados con TODO hay que completarlos antes de publicar.
+ * Lo que todavía no está confirmado se deja VACÍO: la tarjeta lo oculta o avisa
+ * que falta, nunca muestra un dato inventado.
  */
 export const event = {
   groom: 'Fabrizio',
@@ -8,12 +9,14 @@ export const event = {
   bride: 'Emanuela',
   brideFull: 'Emanuela Valentina Istodor',
 
-  /** Fecha y hora de inicio en hora de Italia (CEST en agosto). */
-  dateISO: '2027-08-28T17:00:00+02:00', // TODO: confirmar hora de la ceremonia
-  endISO: '2027-08-29T02:00:00+02:00',
+  /** Día del casamiento (YYYY-MM-DD). */
+  date: '2027-08-28',
+  /** Horarios en hora de Italia, formato HH:MM. Vacío = sin confirmar. */
+  ceremonyTime: '',
+  receptionTime: '',
   timeZone: 'Europe/Rome',
-  ceremonyTime: '17:00', // TODO: confirmar
-  receptionTime: '19:00', // TODO: confirmar
+  /** Desfase horario de Italia en agosto (CEST). */
+  utcOffset: '+02:00',
 
   venue: {
     name: 'Boutique Hotel Municipio 1815',
@@ -26,25 +29,46 @@ export const event = {
     website: 'https://www.instagram.com/municipio1815/',
   },
 
-  /** Número de WhatsApp para confirmar asistencia, con código de país y sin espacios. */
-  whatsapp: '+39000000000', // TODO: número de Fabrizio o Emanuela
+  /** WhatsApp para confirmar asistencia, con código de país. Vacío = los botones avisan que falta. */
+  whatsapp: '',
 
-  /** Fecha límite para confirmar. */
-  rsvpDeadlineISO: '2027-06-30',
+  /** Fecha límite para confirmar (YYYY-MM-DD). Vacío = no se menciona. */
+  rsvpDeadline: '',
 
-  /** Playlist colaborativa (Spotify) o vacío para pedir canciones por WhatsApp. */
-  playlistUrl: '', // TODO: opcional
+  /** Playlist colaborativa (Spotify). Vacío = se sugieren canciones por WhatsApp. */
+  playlistUrl: '',
 
-  /** Datos para regalos. Dejar vacío lo que no se quiera mostrar. */
+  /** Datos para regalos. IBAN vacío = la tarjeta de regalos no se muestra. */
   gift: {
-    iban: 'IT00 X000 0000 0000 0000 0000 000', // TODO
-    holder: 'Fabrizio Dalla Bona e Emanuela Istodor', // TODO
+    iban: '',
+    holder: '',
   },
 
-  /** Dominio final del sitio, para los metadatos. */
-  site: 'https://nicocheca.github.io/tarjeta-fabrizio-emanuela', // TODO: dominio propio si lo compran
+  /**
+   * URL pública del sitio. Es la única fuente: astro.config toma de acá `site` y `base`.
+   * Con dominio propio: 'https://ejemplo.com' y crear public/CNAME.
+   */
+  site: 'https://nicocheca.github.io/tarjeta-fabrizio-emanuela',
 } as const;
 
 export type Locale = 'it' | 'es' | 'ro';
 export const locales: Locale[] = ['it', 'es', 'ro'];
 export const defaultLocale: Locale = 'it';
+
+/* ---- Derivados ---- */
+
+/** Hay hora confirmada para la ceremonia. */
+export const hasTime = Boolean(event.ceremonyTime);
+
+const nextDay = (ymd: string) => {
+  const d = new Date(`${ymd}T12:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + 1);
+  return d.toISOString().slice(0, 10);
+};
+
+/** Inicio del evento. Sin hora confirmada, la medianoche del día (para la cuenta regresiva). */
+export const startISO = `${event.date}T${event.ceremonyTime || '00:00'}:00${event.utcOffset}`;
+/** Fin del evento: la madrugada siguiente. */
+export const endISO = `${nextDay(event.date)}T${hasTime ? '02:00' : '00:00'}:00${event.utcOffset}`;
+/** Día siguiente, para eventos de día completo en el calendario. */
+export const dateEnd = nextDay(event.date);

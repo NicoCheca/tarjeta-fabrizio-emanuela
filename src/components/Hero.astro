@@ -4,7 +4,7 @@ import playa from '../assets/photos/playa.jpg';
 import LemonBranch from './LemonBranch.astro';
 import Olive from './Olive.astro';
 import LangSwitcher from './LangSwitcher.astro';
-import { event, type Locale } from '../config';
+import { event, startISO, type Locale } from '../config';
 import { getDict, formatEventDate } from '../i18n';
 
 interface Props {
@@ -19,8 +19,8 @@ const date = formatEventDate(locale);
   <div class="tiles" aria-hidden="true"></div>
   <LangSwitcher locale={locale} />
 
-  <span class="branch branch--tl" aria-hidden="true"><LemonBranch width={320} /></span>
-  <span class="branch branch--br" aria-hidden="true"><LemonBranch width={300} /></span>
+  <span class="branch branch--tl" aria-hidden="true"><LemonBranch width={320} id="hero-a" /></span>
+  <span class="branch branch--br" aria-hidden="true"><LemonBranch width={300} id="hero-b" /></span>
 
   <div class="container hero__grid">
     <div class="hero__text">
@@ -38,7 +38,7 @@ const date = formatEventDate(locale);
       <p class="tagline script">{t.hero.tagline}</p>
       <div class="rule" aria-hidden="true"></div>
       <p class="date">
-        <time datetime={event.dateISO}>{date}</time>
+        <time datetime={startISO}>{date}</time>
       </p>
       <p class="place">{t.hero.place}</p>
     </div>

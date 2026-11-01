@@ -1,11 +1,13 @@
-// @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
+import { event } from './src/config';
+
+// `site` y `base` salen de la URL pública en src/config.ts, la única fuente.
+const publicUrl = new URL(event.site);
+const base = publicUrl.pathname.replace(/\/$/, '');
 
 export default defineConfig({
-  // Publicado en GitHub Pages: https://nicocheca.github.io/tarjeta-fabrizio-emanuela
-  // Con dominio propio: poner el dominio en `site`, borrar `base` y crear public/CNAME.
-  site: 'https://nicocheca.github.io',
-  base: '/tarjeta-fabrizio-emanuela',
+  site: publicUrl.origin,
+  ...(base ? { base } : {}),
 
   i18n: {
     defaultLocale: 'it',

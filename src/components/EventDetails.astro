@@ -1,6 +1,6 @@
 ---
 import Olive from './Olive.astro';
-import { event, type Locale } from '../config';
+import { event, startISO, endISO, hasTime, dateEnd, type Locale } from '../config';
 import { getDict, formatEventDate } from '../i18n';
 
 interface Props {
@@ -11,12 +11,15 @@ const t = getDict(locale);
 const date = formatEventDate(locale);
 
 const toGcal = (iso: string) => new Date(iso).toISOString().replace(/[-:]|\.\d{3}/g, '');
+const ymd = (s: string) => s.replace(/-/g, '');
 const title = `${t.event.title} · ${event.groom} & ${event.bride}`;
 const location = `${event.venue.name}, ${event.venue.street}, ${event.venue.town}, ${event.venue.region}`;
+// Sin hora confirmada, el evento se agenda como día completo.
+const gcalDates = hasTime ? `${toGcal(startISO)}/${toGcal(endISO)}` : `${ymd(event.date)}/${ymd(dateEnd)}`;
 const gcal =
   'https://calendar.google.com/calendar/render?action=TEMPLATE' +
   `&text=${encodeURIComponent(title)}` +
-  `&dates=${toGcal(event.dateISO)}/${toGcal(event.endISO)}` +
+  `&dates=${gcalDates}` +
   `&location=${encodeURIComponent(location)}` +
   `&ctz=${event.timeZone}`;
 ---
@@ -34,24 +37,39 @@ const gcal =
         <div class="card__body">
           <h3>{t.event.when}</h3>
           <Olive width={90} />
-          <p class="big"><time datetime={event.dateISO}>{date}</time></p>
-          <dl class="times">
-            <div>
-              <dt>{t.event.ceremony}</dt>
-              <dd>{t.event.at} {event.ceremonyTime}</dd>
-            </div>
-            <div>
-              <dt>{t.event.reception}</dt>
-              <dd>{t.event.at} {event.receptionTime}</dd>
-            </div>
-          </dl>
+          <p class="big"><time datetime={hasTime ? startISO : event.date}>{date}</time></p>
+          {
+            hasTime ? (
+              <dl class="times">
+                <div>
+                  <dt>{t.event.ceremony}</dt>
+                  <dd>
+                    {t.event.at} {event.ceremonyTime}
+                  </dd>
+                </div>
+                {event.receptionTime && (
+                  <div>
+                    <dt>{t.event.reception}</dt>
+                    <dd>
+                      {t.event.at} {event.receptionTime}
+                    </dd>
+                  </div>
+                )}
+              </dl>
+            ) : (
+              <p class="tbd">{t.event.timeTbd}</p>
+            )
+          }
           <button
             class="btn"
             type="button"
             data-ics
             data-ics-title={title}
-            data-ics-start={event.dateISO}
-            data-ics-end={event.endISO}
+            data-ics-date={event.date}
+            data-ics-date-end={dateEnd}
+            data-ics-allday={hasTime ? '0' : '1'}
+            data-ics-start={startISO}
+            data-ics-end={endISO}
             data-ics-location={location}
             data-ics-gcal={gcal}
           >
@@ -157,9 +175,14 @@ const gcal =
     font-size: 1.35rem;
   }
 
+  .tbd,
   .addr {
     color: var(--ink-soft);
     line-height: 1.5;
+  }
+
+  .tbd {
+    font-style: italic;
   }
 
   .note {

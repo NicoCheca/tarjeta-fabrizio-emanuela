@@ -1,7 +1,7 @@
 import { it, type Dict } from './it';
 import { es } from './es';
 import { ro } from './ro';
-import { event, type Locale } from '../config';
+import { event, startISO, type Locale } from '../config';
 
 const dicts: Record<Locale, Dict> = { it, es, ro };
 
@@ -9,7 +9,7 @@ export function getDict(locale: Locale): Dict {
   return dicts[locale];
 }
 
-/** "sabato 28 agosto 2027" según el idioma. */
+/** "Sabato 28 agosto 2027" según el idioma, con solo la inicial en mayúscula. */
 export function formatEventDate(locale: Locale): string {
   const s = new Intl.DateTimeFormat(dicts[locale].tag, {
     weekday: 'long',
@@ -17,20 +17,24 @@ export function formatEventDate(locale: Locale): string {
     month: 'long',
     year: 'numeric',
     timeZone: event.timeZone,
-  }).format(new Date(event.dateISO));
-  // Solo la inicial en mayúscula: "Sabato 28 agosto 2027".
+  }).format(new Date(startISO));
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
-export function formatDeadline(locale: Locale): string {
+/** Fecha límite de confirmación, o null si no está definida. */
+export function formatDeadline(locale: Locale): string | null {
+  if (!event.rsvpDeadline) return null;
   return new Intl.DateTimeFormat(dicts[locale].tag, {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
     timeZone: event.timeZone,
-  }).format(new Date(event.rsvpDeadlineISO + 'T12:00:00'));
+  }).format(new Date(`${event.rsvpDeadline}T12:00:00${event.utcOffset}`));
 }
 
-export function whatsappUrl(message: string): string {
-  return `https://wa.me/${event.whatsapp.replace(/[^\d]/g, '')}?text=${encodeURIComponent(message)}`;
+/** Link a WhatsApp con mensaje precargado, o null si todavía no hay número. */
+export function whatsappUrl(message: string): string | null {
+  const digits = event.whatsapp.replace(/[^\d]/g, '');
+  if (!digits) return null;
+  return `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
 }

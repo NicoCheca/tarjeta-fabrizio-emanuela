@@ -9,16 +9,17 @@ Hecha con [Astro](https://astro.build): sale como HTML estático, sin frameworks
 ## Editar los datos
 
 Todo lo que cambia está en un solo archivo: `src/config.ts`.
-Los valores marcados con `TODO` hay que completarlos antes de publicar:
+Lo que todavía no está confirmado se deja **vacío**: la tarjeta lo oculta o avisa que falta,
+nunca muestra un dato inventado.
 
-| Dato | Dónde |
-| --- | --- |
-| Hora de la ceremonia y de la fiesta | `dateISO`, `ceremonyTime`, `receptionTime` |
-| Número de WhatsApp para confirmar | `whatsapp` (con código de país, sin espacios) |
-| Fecha límite para confirmar | `rsvpDeadlineISO` |
-| IBAN y titular para regalos (vacío = no se muestra) | `gift` |
-| Playlist de Spotify (vacío = sugieren por WhatsApp) | `playlistUrl` |
-| Dominio final | `site` acá y en `astro.config.mjs` |
+| Dato | Campo | Si está vacío |
+| --- | --- | --- |
+| Hora de la ceremonia y de la fiesta | `ceremonyTime`, `receptionTime` | Dice "horarios a confirmar" y agenda el día completo |
+| Número de WhatsApp para confirmar | `whatsapp` (con código de país) | La sección de confirmación avisa que pronto se informa |
+| Fecha límite para confirmar | `rsvpDeadline` | No se menciona |
+| IBAN y titular para regalos | `gift` | La tarjeta de regalos no se muestra |
+| Playlist de Spotify | `playlistUrl` | Se sugieren canciones por WhatsApp |
+| URL pública del sitio | `site` | Es la única fuente: de ahí salen `site` y `base` de Astro |
 
 Los textos de cada idioma están en `src/i18n/it.ts`, `es.ts` y `ro.ts`.
 Las fotos están en `src/assets/photos/`; Astro genera solo las versiones AVIF/WebP en varios tamaños.
@@ -38,8 +39,8 @@ Para GitHub Pages ya está el workflow en `.github/workflows/deploy.yml`:
 
 1. Subir el repo a GitHub.
 2. En *Settings → Pages* elegir **GitHub Actions** como origen.
-3. Si el sitio va a vivir en `usuario.github.io/repo`, agregar `base: '/repo'` en `astro.config.mjs`.
-   Si va con dominio propio, poner el dominio en `site` y crear `public/CNAME` con el dominio.
+3. Con dominio propio: poner la URL en `site` de `src/config.ts` y crear `public/CNAME` con el dominio.
+   Para `usuario.github.io/repo` alcanza con que `site` incluya `/repo`.
 
 ## Diseño
 

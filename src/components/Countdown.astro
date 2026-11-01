@@ -1,5 +1,5 @@
 ---
-import { event, type Locale } from '../config';
+import { event, startISO, type Locale } from '../config';
 import { getDict } from '../i18n';
 
 interface Props {
@@ -23,7 +23,9 @@ const units = [
     <div
       class="cd"
       data-countdown
-      data-target={event.dateISO}
+      data-target={startISO}
+      data-date={event.date}
+      data-tz={event.timeZone}
       data-today={t.countdown.today}
       data-past={t.countdown.past}
       role="timer"

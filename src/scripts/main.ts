@@ -18,17 +18,20 @@ document.querySelectorAll<HTMLAnchorElement>('[data-lang]').forEach((a) => {
 const cd = document.querySelector<HTMLElement>('[data-countdown]');
 if (cd) {
   const target = new Date(cd.dataset.target ?? '').getTime();
+  const tz = cd.dataset.tz || 'Europe/Rome';
+  const eventDay = cd.dataset.date ?? '';
   const msg = document.querySelector<HTMLElement>('[data-countdown-msg]');
   const num = (k: string) => cd.querySelector<HTMLElement>(`[data-cd="${k}"]`);
   const pad = (n: number) => String(n).padStart(2, '0');
+  // Día de hoy en la zona horaria del evento, como YYYY-MM-DD
+  const todayIn = () => new Intl.DateTimeFormat('en-CA', { timeZone: tz }).format(new Date());
 
   const tick = () => {
     const diff = target - Date.now();
     if (diff <= 0) {
       cd.hidden = true;
       if (msg) {
-        const sameDay = diff > -24 * 3600 * 1000;
-        msg.textContent = sameDay ? (cd.dataset.today ?? '') : (cd.dataset.past ?? '');
+        msg.textContent = todayIn() === eventDay ? (cd.dataset.today ?? '') : (cd.dataset.past ?? '');
         msg.hidden = false;
       }
       return;
@@ -43,30 +46,40 @@ if (cd) {
   tick();
 }
 
-/* ---------- Agendar (.ics o Google Calendar en Android) ---------- */
+/* ---------- Agendar: Google Calendar en Android, .ics en el resto ---------- */
 document.querySelectorAll<HTMLButtonElement>('[data-ics]').forEach((btn) => {
   btn.addEventListener('click', () => {
     const d = btn.dataset;
-    if (/android/i.test(navigator.userAgent) && d.icsGcal) {
+    const ua = navigator.userAgent;
+    if (/android/i.test(ua) && d.icsGcal) {
       window.open(d.icsGcal, '_blank', 'noopener');
       return;
     }
-    const fmt = (iso: string) => new Date(iso).toISOString().replace(/[-:]|\.\d{3}/g, '');
+    const stamp = (iso: string) => new Date(iso).toISOString().replace(/[-:]|\.\d{3}/g, '');
     const esc = (s = '') => s.replace(/\\/g, '\\\\').replace(/[,;]/g, (m) => `\\${m}`);
+    const allDay = d.icsAllday === '1';
+    const dates = allDay
+      ? [`DTSTART;VALUE=DATE:${d.icsDate?.replace(/-/g, '')}`, `DTEND;VALUE=DATE:${d.icsDateEnd?.replace(/-/g, '')}`]
+      : [`DTSTART:${stamp(d.icsStart ?? '')}`, `DTEND:${stamp(d.icsEnd ?? '')}`];
     const ics = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
       'PRODID:-//Fabrizio & Emanuela//Matrimonio//IT',
       'BEGIN:VEVENT',
-      `UID:${fmt(d.icsStart ?? '')}-matrimonio@fabrizio-emanuela`,
-      `DTSTAMP:${fmt(new Date().toISOString())}`,
-      `DTSTART:${fmt(d.icsStart ?? '')}`,
-      `DTEND:${fmt(d.icsEnd ?? '')}`,
+      `UID:${d.icsDate}-matrimonio@fabrizio-emanuela`,
+      `DTSTAMP:${stamp(new Date().toISOString())}`,
+      ...dates,
       `SUMMARY:${esc(d.icsTitle)}`,
       `LOCATION:${esc(d.icsLocation)}`,
       'END:VEVENT',
       'END:VCALENDAR',
     ].join('\r\n');
+
+    // iOS no descarga blobs de forma fiable: un data: URL abierto directo va a Calendario.
+    if (/iPad|iPhone|iPod/i.test(ua)) {
+      window.open(`data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}`, '_blank');
+      return;
+    }
     const url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
     const a = Object.assign(document.createElement('a'), { href: url, download: 'matrimonio-fabrizio-emanuela.ics' });
     document.body.appendChild(a);

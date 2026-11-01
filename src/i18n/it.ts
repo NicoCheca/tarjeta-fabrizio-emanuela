@@ -30,6 +30,7 @@ export const it = {
     reception: 'Festa',
     at: 'ore',
     venueNote: 'Tra le colline del Prosecco, patrimonio UNESCO',
+    timeTbd: 'Orari da confermare',
     addToCalendar: 'Salva la data',
     directions: 'Come arrivare',
   },
@@ -71,6 +72,9 @@ export const it = {
   rsvp: {
     title: 'Conferma la tua presenza',
     text: 'Vi aspettiamo! Confermate entro il {deadline} scrivendoci su WhatsApp.',
+    eyebrow: 'Conferma',
+    textNoDeadline: 'Vi aspettiamo! Confermate scrivendoci su WhatsApp.',
+    pending: 'A breve vi diremo come confermare la presenza.',
     cta: 'Conferma su WhatsApp',
     message:
       'Ciao! Confermo la mia presenza al vostro matrimonio del 28 agosto 2027.\nNome e cognome: \nNumero di persone: \nIntolleranze o allergie: ',

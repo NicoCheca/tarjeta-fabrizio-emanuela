@@ -70,7 +70,11 @@ const showGift = Boolean(event.gift.iban);
         </span>
         <h3>{t.info.playlist.title}</h3>
         <p>{t.info.playlist.text}</p>
-        <a class="btn btn--ghost" href={playlistHref} target="_blank" rel="noopener">{t.info.playlist.cta}</a>
+        {playlistHref && (
+          <a class="btn btn--ghost" href={playlistHref} target="_blank" rel="noopener">
+            {t.info.playlist.cta}
+          </a>
+        )}
       </article>
 
       <article class="card reveal">

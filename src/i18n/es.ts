@@ -32,6 +32,7 @@ export const es: Dict = {
     reception: 'Fiesta',
     at: 'a las',
     venueNote: 'Entre las colinas del Prosecco, patrimonio de la UNESCO',
+    timeTbd: 'Horarios a confirmar',
     addToCalendar: 'Agendar',
     directions: 'Cómo llegar',
   },
@@ -73,6 +74,9 @@ export const es: Dict = {
   rsvp: {
     title: 'Confirmá tu asistencia',
     text: '¡Los esperamos! Confirmen antes del {deadline} escribiéndonos por WhatsApp.',
+    eyebrow: 'Confirmación',
+    textNoDeadline: '¡Los esperamos! Confirmen escribiéndonos por WhatsApp.',
+    pending: 'Pronto les contamos cómo confirmar la asistencia.',
     cta: 'Confirmar por WhatsApp',
     message:
       '¡Hola! Confirmo mi asistencia a su casamiento del 28 de agosto de 2027.\nNombre y apellido: \nCantidad de personas: \nIntolerancias o alergias: ',

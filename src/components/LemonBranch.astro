@@ -5,11 +5,12 @@
  * Decorativa: aria-hidden.
  */
 interface Props {
+  /** Prefijo único por instancia para los ids de los gradientes. */
+  id: string;
   class?: string;
   width?: number;
 }
-const { class: className = '', width = 300 } = Astro.props;
-const id = `lb-${Math.random().toString(36).slice(2, 7)}`;
+const { id, class: className = '', width = 300 } = Astro.props;
 ---
 
 <svg

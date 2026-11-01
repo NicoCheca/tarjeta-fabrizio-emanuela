@@ -32,6 +32,7 @@ export const ro: Dict = {
     reception: 'Petrecerea',
     at: 'ora',
     venueNote: 'Între dealurile Prosecco, patrimoniu UNESCO',
+    timeTbd: 'Orele urmează să fie confirmate',
     addToCalendar: 'Salvează data',
     directions: 'Cum ajungi',
   },
@@ -73,6 +74,9 @@ export const ro: Dict = {
   rsvp: {
     title: 'Confirmă prezența',
     text: 'Vă așteptăm! Confirmați până la {deadline} scriindu-ne pe WhatsApp.',
+    eyebrow: 'Confirmare',
+    textNoDeadline: 'Vă așteptăm! Confirmați scriindu-ne pe WhatsApp.',
+    pending: 'În curând vă spunem cum să confirmați prezența.',
     cta: 'Confirmă pe WhatsApp',
     message:
       'Salut! Confirm prezența mea la nunta voastră din 28 august 2027.\nNume și prenume: \nNumăr de persoane: \nIntoleranțe sau alergii: ',
