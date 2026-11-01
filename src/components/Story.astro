@@ -14,6 +14,7 @@ const t = getDict(locale);
 ---
 
 <section class="section section--cream center" id="story" aria-labelledby="story-title">
+  <div class="awning awning--top" aria-hidden="true"></div>
   <div class="container">
     <div class="reveal">
       <p class="eyebrow">{t.story.title}</p>
@@ -21,62 +22,94 @@ const t = getDict(locale);
       <p class="lead">{t.story.text}</p>
     </div>
 
+    <!-- Fotos con paspartú blanco, como copias impresas sobre la mesa -->
     <div class="gallery">
-      <figure class="reveal">
+      <figure class="print reveal">
         <Picture src={noche} formats={['avif', 'webp']} width={700} alt={t.story.alts.noche} loading="lazy" />
       </figure>
-      <figure class="reveal feature">
+      <figure class="print print--feature reveal">
         <Picture src={anillo} formats={['avif', 'webp']} width={900} alt={t.story.alts.anillo} loading="lazy" />
       </figure>
-      <figure class="reveal">
+      <figure class="print reveal">
         <Picture src={atardecer} formats={['avif', 'webp']} width={700} alt={t.story.alts.atardecer} loading="lazy" />
       </figure>
     </div>
   </div>
+  <div class="awning awning--bottom" aria-hidden="true"></div>
 </section>
 
 <style>
+  .awning--top {
+    position: absolute;
+    inset: 0 0 auto 0;
+  }
+
+  .awning--bottom {
+    position: absolute;
+    inset: auto 0 0 0;
+    border-bottom: 0;
+    border-top: 1px solid var(--blue);
+  }
+
+  .awning--bottom::after {
+    top: auto;
+    bottom: 100%;
+    background-position: 0 100%;
+    background-image: radial-gradient(circle at 12px 12px, var(--blue) 10px, transparent 11px);
+  }
+
+  .awning {
+    position: absolute;
+  }
+
   .gallery {
     display: grid;
-    gap: 16px;
+    gap: 22px;
     margin-top: 44px;
   }
 
-  figure {
+  .print {
     margin: 0;
-    aspect-ratio: 4 / 5;
-    border-radius: var(--radius);
-    overflow: hidden;
-    background: var(--line);
+    padding: 10px 10px 14px;
+    background: var(--paper);
+    border: 1px solid var(--line);
     box-shadow: var(--shadow);
+    aspect-ratio: 4 / 5;
   }
 
-  figure :global(picture) {
+  .print :global(picture) {
     height: 100%;
   }
 
-  figure :global(img) {
+  .print :global(img) {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  .feature {
+  .print--feature {
     aspect-ratio: 4 / 3;
   }
 
   @media (min-width: 720px) {
     .gallery {
-      grid-template-columns: 1fr 1.4fr 1fr;
+      grid-template-columns: 1fr 1.35fr 1fr;
       align-items: center;
     }
 
-    .feature {
-      aspect-ratio: 4 / 5;
+    .print {
+      aspect-ratio: 3 / 4;
+      transform: rotate(-2.5deg);
     }
 
-    figure:not(.feature) {
-      aspect-ratio: 3 / 4;
+    .print:last-child {
+      transform: rotate(2.5deg);
+    }
+
+    .print--feature {
+      aspect-ratio: 4 / 5;
+      transform: none;
+      z-index: 1;
     }
   }
 </style>

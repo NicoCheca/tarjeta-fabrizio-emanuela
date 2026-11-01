@@ -1,0 +1,36 @@
+---
+/** Ramita de olivo horizontal, para separadores y títulos. Decorativa. */
+interface Props {
+  class?: string;
+  width?: number;
+  flip?: boolean;
+}
+const { class: className = '', width = 120, flip = false } = Astro.props;
+---
+
+<svg
+  class:list={['olive', className]}
+  width={width}
+  height={width / 4}
+  viewBox="0 0 120 30"
+  fill="none"
+  stroke-linecap="round"
+  aria-hidden="true"
+  style={flip ? 'transform:scaleX(-1)' : undefined}
+>
+  <path d="M2 16c30-2 60-4 116-2" stroke="#6B5A3E" stroke-width="1.6"></path>
+  <g fill="#8FA35A" stroke="#5E7F3F" stroke-width="1">
+    <path d="M14 15c4-9 12-12 20-10-3 8-10 12-20 10z"></path>
+    <path d="M26 16c6 6 14 8 22 4-5-6-13-9-22-4z"></path>
+    <path d="M40 14c4-9 12-12 20-10-3 8-10 12-20 10z"></path>
+    <path d="M54 15c6 6 14 8 22 4-5-6-13-9-22-4z"></path>
+    <path d="M68 13c4-9 12-12 20-10-3 8-10 12-20 10z"></path>
+    <path d="M82 14c6 6 14 8 22 4-5-6-13-9-22-4z"></path>
+    <path d="M96 13c4-8 10-11 18-10-3 7-9 11-18 10z"></path>
+  </g>
+  <g fill="#4E5B2E">
+    <circle cx="32" cy="22" r="2.6"></circle>
+    <circle cx="62" cy="21" r="2.6"></circle>
+    <circle cx="90" cy="20" r="2.4"></circle>
+  </g>
+</svg>

@@ -11,6 +11,7 @@ export const es: Dict = {
   hero: {
     kicker: 'Nos casamos',
     place: 'Valdobbiadene, Italia',
+    tagline: 'Celebramos la Dolce Vita',
     scroll: 'Deslizá',
     photoAlt: 'Fabrizio y Emanuela abrazados a orillas del mar',
   },

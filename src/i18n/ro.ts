@@ -11,6 +11,7 @@ export const ro: Dict = {
   hero: {
     kicker: 'Ne căsătorim',
     place: 'Valdobbiadene, Italia',
+    tagline: 'Sărbătorim la Dolce Vita',
     scroll: 'Derulează',
     photoAlt: 'Fabrizio și Emanuela îmbrățișați pe malul mării',
   },

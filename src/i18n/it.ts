@@ -9,6 +9,7 @@ export const it = {
   hero: {
     kicker: 'Ci sposiamo',
     place: 'Valdobbiadene, Italia',
+    tagline: 'Celebriamo la Dolce Vita',
     scroll: 'Scorri',
     photoAlt: 'Fabrizio ed Emanuela abbracciati in riva al mare',
   },

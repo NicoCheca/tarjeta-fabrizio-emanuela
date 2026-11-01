@@ -41,6 +41,18 @@ Para GitHub Pages ya está el workflow en `.github/workflows/deploy.yml`:
 3. Si el sitio va a vivir en `usuario.github.io/repo`, agregar `base: '/repo'` en `astro.config.mjs`.
    Si va con dominio propio, poner el dominio en `site` y crear `public/CNAME` con el dominio.
 
+## Diseño
+
+Estética Dolce Vita según cómo se trabaja en bodas y papelería italiana:
+paleta limón / azul mayólica / oliva / marfil / terracota, azulejo de mayólica
+como marco y cinta, ramas de limonero y olivo como bordes, toldos a rayas Riviera,
+papel con textura, caligrafía italiana para los acentos y monograma en corona de olivo.
+Los patrones son SVG propios en `src/lib/patterns.ts` y las ilustraciones en
+`src/components/LemonBranch.astro`, `Olive.astro` y `Monogram.astro`.
+
+Fuentes: guía Dolce Vita 2026 de iliadecreation.fr, guía de invitaciones italianas
+de paperlust.co y artículo sobre el tema en dilei.it.
+
 ## Estructura
 
 ```

@@ -102,7 +102,7 @@ const showGift = Boolean(event.gift.iban);
     padding: clamp(24px, 3vw, 34px);
     background: var(--paper);
     border: 1px solid var(--line);
-    border-radius: var(--radius);
+    border-top: 3px solid var(--blue);
   }
 
   .icon {
@@ -111,8 +111,9 @@ const showGift = Boolean(event.gift.iban);
     width: 46px;
     height: 46px;
     border-radius: 50%;
-    background: var(--lemon);
-    color: var(--ink);
+    background: var(--blue-soft);
+    color: var(--blue);
+    border: 1px solid var(--blue);
   }
 
   .icon svg {
@@ -174,7 +175,7 @@ const showGift = Boolean(event.gift.iban);
 
   .copy[data-done] {
     background: var(--lemon);
-    border-color: var(--lemon);
+    border-color: var(--lemon-deep);
   }
 
   @media (min-width: 640px) {

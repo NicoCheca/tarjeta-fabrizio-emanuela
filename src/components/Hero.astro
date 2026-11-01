@@ -1,7 +1,8 @@
 ---
 import { Picture } from 'astro:assets';
 import playa from '../assets/photos/playa.jpg';
-import Lemon from './Lemon.astro';
+import LemonBranch from './LemonBranch.astro';
+import Olive from './Olive.astro';
 import LangSwitcher from './LangSwitcher.astro';
 import { event, type Locale } from '../config';
 import { getDict, formatEventDate } from '../i18n';
@@ -15,36 +16,45 @@ const date = formatEventDate(locale);
 ---
 
 <header class="hero" id="top">
+  <div class="tiles" aria-hidden="true"></div>
   <LangSwitcher locale={locale} />
 
-  <span class="deco deco--tl"><Lemon size={120} /></span>
-  <span class="deco deco--br"><Lemon size={150} /></span>
+  <span class="branch branch--tl" aria-hidden="true"><LemonBranch width={320} /></span>
+  <span class="branch branch--br" aria-hidden="true"><LemonBranch width={300} /></span>
 
   <div class="container hero__grid">
     <div class="hero__text">
-      <p class="eyebrow">{t.hero.kicker}</p>
+      <p class="eyebrow">
+        <Olive width={64} flip />
+        {t.hero.kicker}
+        <Olive width={64} />
+      </p>
       <h1 class="names">
         <span>{event.groom}</span>
-        <span class="amp" aria-hidden="true">&amp;</span>
+        <span class="amp script" aria-hidden="true">&amp;</span>
         <span class="sr-only">&amp;</span>
         <span>{event.bride}</span>
       </h1>
+      <p class="tagline script">{t.hero.tagline}</p>
+      <div class="rule" aria-hidden="true"></div>
       <p class="date">
         <time datetime={event.dateISO}>{date}</time>
       </p>
       <p class="place">{t.hero.place}</p>
     </div>
 
-    <figure class="arch">
-      <Picture
-        src={playa}
-        formats={['avif', 'webp']}
-        width={688}
-        alt={t.hero.photoAlt}
-        loading="eager"
-        fetchpriority="high"
-      />
-    </figure>
+    <div class="arch-frame">
+      <figure class="arch">
+        <Picture
+          src={playa}
+          formats={['avif', 'webp']}
+          width={688}
+          alt={t.hero.photoAlt}
+          loading="eager"
+          fetchpriority="high"
+        />
+      </figure>
+    </div>
   </div>
 
   <a class="scroll" href="#countdown" aria-label={t.hero.scroll}>
@@ -58,41 +68,51 @@ const date = formatEventDate(locale);
 <style>
   .hero {
     position: relative;
-    min-height: 100svh;
+    min-height: min(100svh, 980px);
     display: grid;
     align-content: center;
-    padding-block: clamp(84px, 12vw, 120px) clamp(72px, 10vw, 110px);
+    padding-block: clamp(96px, 13vw, 140px) clamp(72px, 10vw, 110px);
     overflow: hidden;
     isolation: isolate;
   }
 
-  .deco {
+  .hero > .tiles {
+    position: absolute;
+    inset: 0 0 auto 0;
+  }
+
+  .branch {
     position: absolute;
     z-index: -1;
-    opacity: 0.9;
     line-height: 0;
+    opacity: 0.95;
   }
 
-  .deco--tl {
-    top: -18px;
-    left: -26px;
-    transform: rotate(-20deg);
+  /* La rama cuelga desde arriba a la izquierda, como en una pérgola de limones */
+  .branch--tl {
+    top: calc(var(--tile) - 24px);
+    left: -70px;
+    transform: rotate(28deg);
   }
 
-  .deco--br {
-    right: -34px;
-    bottom: 36px;
-    transform: rotate(160deg) scaleX(-1);
+  .branch--br {
+    right: -60px;
+    bottom: -30px;
+    transform: rotate(205deg) scaleY(-1);
   }
 
   .hero__grid {
     display: grid;
-    gap: clamp(32px, 6vw, 72px);
+    gap: clamp(36px, 6vw, 72px);
     align-items: center;
   }
 
   .hero__text {
     text-align: center;
+  }
+
+  .eyebrow :global(.olive) {
+    opacity: 0.9;
   }
 
   .names {
@@ -107,15 +127,18 @@ const date = formatEventDate(locale);
   }
 
   .amp {
-    font-style: italic;
     color: var(--lemon-deep);
-    font-size: 0.55em;
-    line-height: 1.1;
-    margin-block: 0.1em;
+    font-size: 0.7em;
+    line-height: 0.9;
+    margin-block: 0.05em;
+  }
+
+  .tagline {
+    margin-top: 14px;
+    font-size: clamp(2rem, 4.5vw, 3rem);
   }
 
   .date {
-    margin-top: 28px;
     font-family: var(--font-display);
     font-style: italic;
     font-size: clamp(1.35rem, 2.6vw, 1.8rem);
@@ -123,22 +146,31 @@ const date = formatEventDate(locale);
 
   .place {
     margin-top: 6px;
-    font-size: 0.85rem;
-    letter-spacing: 0.2em;
+    font-size: 0.82rem;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--ink-soft);
   }
 
-  /* Foto en arco, el motivo clásico de las invitaciones italianas */
-  .arch {
+  /* Foto en arco con marco de mayólica: el motivo clásico de la papelería italiana */
+  .arch-frame {
     margin: 0 auto;
-    width: min(78vw, 360px);
-    aspect-ratio: 3 / 4;
+    width: min(82vw, 380px);
+    padding: var(--tile);
+    background-image: var(--pat-majolica);
+    background-size: var(--tile) var(--tile);
     border-radius: 999px 999px var(--radius) var(--radius);
-    overflow: hidden;
+    border: 1px solid var(--blue);
     box-shadow: var(--shadow);
-    outline: 1px solid var(--line);
-    outline-offset: 10px;
+  }
+
+  .arch {
+    margin: 0;
+    aspect-ratio: 3 / 4;
+    border-radius: 999px 999px calc(var(--radius) - 8px) calc(var(--radius) - 8px);
+    overflow: hidden;
+    outline: 1px solid var(--blue);
+    background: var(--line);
   }
 
   .arch :global(picture) {
@@ -180,6 +212,29 @@ const date = formatEventDate(locale);
     }
   }
 
+  @media (max-width: 819px) {
+    .branch :global(svg) {
+      width: 230px;
+      height: auto;
+    }
+
+    .branch--tl {
+      left: -120px;
+      top: calc(var(--tile) - 60px);
+      opacity: 0.85;
+    }
+
+    .branch--br {
+      right: -110px;
+      bottom: -40px;
+      opacity: 0.85;
+    }
+
+    .hero {
+      padding-top: calc(var(--tile) + 96px);
+    }
+  }
+
   @media (min-width: 820px) {
     .hero__grid {
       grid-template-columns: 1.15fr 0.85fr;
@@ -193,8 +248,12 @@ const date = formatEventDate(locale);
       align-items: flex-start;
     }
 
-    .arch {
-      width: min(100%, 420px);
+    .rule {
+      margin-inline: 0;
+    }
+
+    .arch-frame {
+      width: min(100%, 440px);
       margin-right: 0;
     }
   }

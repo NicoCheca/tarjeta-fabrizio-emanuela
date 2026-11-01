@@ -29,6 +29,15 @@ export default defineConfig({
       fallbacks: ['Georgia', 'serif'],
     },
     {
+      name: 'Italianno',
+      cssVariable: '--font-script',
+      provider: fontProviders.google(),
+      weights: [400],
+      styles: ['normal'],
+      subsets: ['latin', 'latin-ext'],
+      fallbacks: ['cursive'],
+    },
+    {
       name: 'Jost',
       cssVariable: '--font-body',
       provider: fontProviders.google(),

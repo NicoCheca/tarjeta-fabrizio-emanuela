@@ -1,26 +1,33 @@
-/* Paleta Dolce Vita: marfil, limón, hoja, mar. Siempre clara: es una invitación. */
+/*
+  Paleta Dolce Vita (guía iliadecreation 2026): limón, azul mayólica, oliva,
+  marfil y terracota. Proporción (dilei.it): ~80 % base neutra, 15 % secundarios,
+  5 % acento fuerte. Siempre clara: es una invitación.
+*/
 :root {
   color-scheme: light;
 
-  --ivory: #faf6ee;
-  --cream: #f3ebdc;
+  --ivory: #f7f3e9;
   --paper: #fffdf8;
-  --ink: #23303a;
-  --ink-soft: #5c6873;
-  --line: #ddd4c3;
+  --cream: #f0e8d6;
+  --ink: #22303b;
+  --ink-soft: #5d6872;
+  --line: #d9d0bd;
 
-  --lemon: #f3cf4f;
+  --lemon: #f4d23c;
   --lemon-deep: #d9ad2a;
-  --leaf: #5e7f5c;
-  --sea: #2f6e8f;
-  --terracotta: #c7694f;
+  --olive: #7a8f3a;
+  --olive-deep: #5e7f3f;
+  --blue: #1e4e8c;
+  --blue-soft: #e4ebf4;
+  --terracotta: #d86c4e;
 
-  --radius: 18px;
+  --radius: 16px;
   --max: 1100px;
   --gutter: clamp(16px, 4vw, 40px);
-  --section: clamp(64px, 10vw, 128px);
+  --section: clamp(64px, 9vw, 120px);
+  --tile: 24px;
 
-  --shadow: 0 18px 50px -24px rgb(35 48 58 / 0.35);
+  --shadow: 0 18px 50px -24px rgb(34 48 59 / 0.35);
 }
 
 *,
@@ -36,7 +43,8 @@ html {
 
 body {
   margin: 0;
-  background: var(--ivory);
+  background-color: var(--ivory);
+  background-image: var(--pat-paper);
   color: var(--ink);
   font-family: var(--font-body);
   font-weight: 300;
@@ -82,38 +90,79 @@ button {
 }
 
 .section {
+  position: relative;
   padding-block: var(--section);
 }
 
+/* Secciones crema: semitransparentes para que se vea la textura del papel */
 .section--cream {
-  background: var(--cream);
+  background: rgb(240 232 214 / 0.75);
 }
 
-/* Títulos de sección: letra pequeña arriba, título serif grande */
+/* Cinta de mayólica: una fila de azulejos completos */
+.tiles {
+  height: var(--tile);
+  background-image: var(--pat-majolica);
+  background-size: var(--tile) var(--tile);
+  background-repeat: repeat-x;
+  border-block: 1px solid var(--blue);
+}
+
+/* Toldo Riviera: rayas azul y blanco con borde festoneado abajo */
+.awning {
+  height: 22px;
+  background-image: var(--pat-stripes);
+  background-size: 48px 100%;
+  border-bottom: 1px solid var(--blue);
+}
+
+/* Borde festoneado del toldo */
+.awning::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 12px;
+  background: radial-gradient(circle at 12px 0, var(--blue) 10px, transparent 11px) 0 0 / 24px 12px repeat-x;
+  opacity: 0.9;
+}
+
+/* Marco de azulejos alrededor de un bloque */
+.tile-frame {
+  padding: var(--tile);
+  background-image: var(--pat-majolica);
+  background-size: var(--tile) var(--tile);
+  border: 1px solid var(--blue);
+}
+
+.tile-frame > * {
+  outline: 1px solid var(--blue);
+}
+
+/* Títulos de sección */
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 0.78rem;
-  letter-spacing: 0.22em;
+  gap: 12px;
+  font-size: 0.76rem;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--leaf);
+  color: var(--olive-deep);
   font-weight: 500;
-}
-
-.eyebrow::before,
-.eyebrow::after {
-  content: '';
-  width: 22px;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.6;
 }
 
 .title {
   font-size: clamp(2.2rem, 5vw, 3.6rem);
   font-style: italic;
   margin-top: 14px;
+}
+
+.script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  color: var(--blue);
+  line-height: 1;
 }
 
 .lead {
@@ -130,10 +179,18 @@ button {
   margin-inline: auto;
 }
 
-/* Botones: píldora, uno lleno de limón y otro de línea */
+/* Doble filete de papelería */
+.rule {
+  width: min(100%, 260px);
+  height: 5px;
+  border-block: 1px solid var(--blue);
+  margin: 18px auto;
+}
+
+/* Botones: azul mayólica lleno, limón para la acción principal, línea para el resto */
 .btn {
-  --bg: var(--ink);
-  --fg: var(--ivory);
+  --bg: var(--blue);
+  --fg: var(--paper);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -172,16 +229,17 @@ button {
 .btn--lemon {
   --bg: var(--lemon);
   --fg: var(--ink);
+  border-color: var(--lemon-deep);
 }
 
 .btn--ghost {
   --bg: transparent;
-  --fg: var(--ink);
-  border-color: var(--ink);
+  --fg: var(--blue);
+  border-color: var(--blue);
 }
 
 .btn--ghost:hover {
-  background: var(--paper);
+  background: var(--blue-soft);
 }
 
 .btn svg {

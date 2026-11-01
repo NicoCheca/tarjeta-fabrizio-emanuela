@@ -30,7 +30,7 @@ const t = getDict(locale);
 <style>
   .lang {
     position: absolute;
-    top: clamp(14px, 2.5vw, 26px);
+    top: calc(var(--tile) + clamp(12px, 2vw, 22px));
     right: var(--gutter);
     z-index: 5;
     display: flex;
@@ -61,7 +61,7 @@ const t = getDict(locale);
   }
 
   .lang a[aria-current='page'] {
-    background: var(--ink);
-    color: var(--ivory);
+    background: var(--blue);
+    color: var(--paper);
   }
 </style>

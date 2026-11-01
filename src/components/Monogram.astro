@@ -1,0 +1,40 @@
+---
+/** Monograma F & E dentro de una corona de olivo, como sello de papelería. */
+interface Props {
+  size?: number;
+  class?: string;
+}
+const { size = 120, class: className = '' } = Astro.props;
+---
+
+<svg
+  class:list={['monogram', className]}
+  width={size}
+  height={size}
+  viewBox="0 0 120 120"
+  fill="none"
+  aria-hidden="true"
+>
+  <circle cx="60" cy="60" r="56" stroke="#1E4E8C" stroke-width="1"></circle>
+  <circle cx="60" cy="60" r="50" stroke="#1E4E8C" stroke-width="0.6" stroke-dasharray="1 3"></circle>
+  <!-- dos ramas de olivo que se abrazan abajo -->
+  <g stroke="#5E7F3F" stroke-width="1.2" fill="#8FA35A">
+    <g transform="translate(60 112)">
+      <path d="M0 0c-14-2-28-10-38-24" fill="none"></path>
+      <path d="M-6-3c-6 2-10 0-13-4 5-2 10-1 13 4zM-14-8c-6 1-10-2-12-6 5-1 9 1 12 6zM-22-14c-6 0-9-3-10-8 5 0 8 3 10 8zM-29-21c-5-1-8-5-8-10 5 1 8 5 8 10z"></path>
+      <path d="M0 0c14-2 28-10 38-24" fill="none"></path>
+      <path d="M6-3c6 2 10 0 13-4-5-2-10-1-13 4zM14-8c6 1 10-2 12-6-5-1-9 1-12 6zM22-14c6 0 9-3 10-8-5 0-8 3-10 8zM29-21c5-1 8-5 8-10-5 1-8 5-8 10z"></path>
+    </g>
+  </g>
+  <text
+    x="60"
+    y="70"
+    text-anchor="middle"
+    font-family="var(--font-display)"
+    font-size="38"
+    font-style="italic"
+    fill="#1E4E8C"
+  >
+    F<tspan fill="#D9AD2A" font-size="26" dy="-2">&amp;</tspan><tspan dy="2">E</tspan>
+  </text>
+</svg>

@@ -4,6 +4,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import playa from '../assets/photos/playa.jpg';
 import { event, locales, defaultLocale, type Locale } from '../config';
 import { getDict } from '../i18n';
+import { majolica, stripes, paper } from '../lib/patterns';
 import '../styles/global.css';
 
 interface Props {
@@ -12,32 +13,35 @@ interface Props {
 const { locale } = Astro.props;
 const t = getDict(locale);
 const og = await getImage({ src: playa, width: 1200, format: 'jpg' });
-const canonical = new URL(getRelativeLocaleUrl(locale), Astro.site ?? event.site).href;
+const base = Astro.site ?? event.site;
+const canonical = new URL(getRelativeLocaleUrl(locale), base).href;
+const patternVars = `--pat-majolica:${majolica};--pat-stripes:${stripes};--pat-paper:${paper}`;
 ---
 
 <!doctype html>
-<html lang={locale}>
+<html lang={locale} style={patternVars}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <title>{t.meta.title}</title>
     <meta name="description" content={t.meta.description} />
-    <meta name="theme-color" content="#faf6ee" />
+    <meta name="theme-color" content="#f7f3e9" />
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/favicon.svg`} />
     <link rel="canonical" href={canonical} />
-    {locales.map((l) => <link rel="alternate" hreflang={l} href={new URL(getRelativeLocaleUrl(l), Astro.site ?? event.site).href} />)}
-    <link rel="alternate" hreflang="x-default" href={new URL(getRelativeLocaleUrl(defaultLocale), Astro.site ?? event.site).href} />
+    {locales.map((l) => <link rel="alternate" hreflang={l} href={new URL(getRelativeLocaleUrl(l), base).href} />)}
+    <link rel="alternate" hreflang="x-default" href={new URL(getRelativeLocaleUrl(defaultLocale), base).href} />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={t.meta.title} />
     <meta property="og:description" content={t.meta.description} />
-    <meta property="og:image" content={new URL(og.src, Astro.site ?? event.site).href} />
+    <meta property="og:image" content={new URL(og.src, base).href} />
     <meta property="og:locale" content={t.tag.replace('-', '_')} />
     <meta name="twitter:card" content="summary_large_image" />
 
     <Font cssVariable="--font-display" preload />
     <Font cssVariable="--font-body" preload />
+    <Font cssVariable="--font-script" />
 
     {
       /* Primera visita sin prefijo: si el navegador está en español o rumano, llevarlo a su idioma. */
