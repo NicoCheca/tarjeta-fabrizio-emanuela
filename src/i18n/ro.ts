@@ -37,6 +37,7 @@ export const ro: Dict = {
     directions: 'Cum ajungi',
   },
   story: {
+    eyebrow: 'Povestea noastră',
     title: 'Noi doi',
     text: 'De la prima privire la acel „da” pe plajă. Acum vrem să sărbătorim cu voi cea mai frumoasă zi.',
     alts: {
@@ -46,6 +47,7 @@ export const ro: Dict = {
     },
   },
   info: {
+    eyebrow: 'Pentru invitați',
     title: 'Informații utile',
     dress: {
       title: 'Dress code',

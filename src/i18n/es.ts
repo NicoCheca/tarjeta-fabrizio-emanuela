@@ -37,6 +37,7 @@ export const es: Dict = {
     directions: 'Cómo llegar',
   },
   story: {
+    eyebrow: 'Nuestra historia',
     title: 'Nosotros',
     text: 'De la primera mirada a ese «sí» en la playa. Ahora queremos festejar con ustedes el día más lindo.',
     alts: {
@@ -46,6 +47,7 @@ export const es: Dict = {
     },
   },
   info: {
+    eyebrow: 'Para los invitados',
     title: 'Información útil',
     dress: {
       title: 'Dress code',

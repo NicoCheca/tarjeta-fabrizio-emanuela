@@ -14,7 +14,7 @@ const showGift = Boolean(event.gift.iban);
 <section class="section center" id="info" aria-labelledby="info-title">
   <div class="container">
     <div class="reveal">
-      <p class="eyebrow">{t.info.title}</p>
+      <p class="eyebrow">{t.info.eyebrow}</p>
       <h2 class="title" id="info-title">{t.info.title}</h2>
     </div>
 
@@ -60,6 +60,8 @@ const showGift = Boolean(event.gift.iban);
         )
       }
 
+      {
+        playlistHref && (
       <article class="card reveal">
         <span class="icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -70,12 +72,12 @@ const showGift = Boolean(event.gift.iban);
         </span>
         <h3>{t.info.playlist.title}</h3>
         <p>{t.info.playlist.text}</p>
-        {playlistHref && (
-          <a class="btn btn--ghost" href={playlistHref} target="_blank" rel="noopener">
-            {t.info.playlist.cta}
-          </a>
-        )}
+        <a class="btn btn--ghost" href={playlistHref} target="_blank" rel="noopener">
+          {t.info.playlist.cta}
+        </a>
       </article>
+        )
+      }
 
       <article class="card reveal">
         <span class="icon" aria-hidden="true">

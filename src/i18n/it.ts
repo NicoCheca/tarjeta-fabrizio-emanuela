@@ -35,6 +35,7 @@ export const it = {
     directions: 'Come arrivare',
   },
   story: {
+    eyebrow: 'La nostra storia',
     title: 'Noi due',
     text: 'Dal primo sguardo a quel «sì» sulla spiaggia. Ora vogliamo festeggiare con voi il giorno più bello.',
     alts: {
@@ -44,6 +45,7 @@ export const it = {
     },
   },
   info: {
+    eyebrow: 'Per gli ospiti',
     title: 'Informazioni utili',
     dress: {
       title: 'Dress code',
