@@ -1,0 +1,167 @@
+---
+import Lemon from './Lemon.astro';
+import { event, type Locale } from '../config';
+import { getDict, formatEventDate } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+const date = formatEventDate(locale);
+
+const toGcal = (iso: string) => new Date(iso).toISOString().replace(/[-:]|\.\d{3}/g, '');
+const title = `${t.event.title} · ${event.groom} & ${event.bride}`;
+const location = `${event.venue.name}, ${event.venue.street}, ${event.venue.town}, ${event.venue.region}`;
+const gcal =
+  'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+  `&text=${encodeURIComponent(title)}` +
+  `&dates=${toGcal(event.dateISO)}/${toGcal(event.endISO)}` +
+  `&location=${encodeURIComponent(location)}` +
+  `&ctz=${event.timeZone}`;
+---
+
+<section class="section center" id="event" aria-labelledby="event-title">
+  <div class="container reveal">
+    <p class="eyebrow">{t.event.title}</p>
+    <h2 class="title" id="event-title">{event.groomFull} <span class="amp">&amp;</span> {event.brideFull}</h2>
+
+    <div class="cards">
+      <article class="card">
+        <Lemon size={40} />
+        <h3>{t.event.when}</h3>
+        <p class="big"><time datetime={event.dateISO}>{date}</time></p>
+        <dl class="times">
+          <div>
+            <dt>{t.event.ceremony}</dt>
+            <dd>{t.event.at} {event.ceremonyTime}</dd>
+          </div>
+          <div>
+            <dt>{t.event.reception}</dt>
+            <dd>{t.event.at} {event.receptionTime}</dd>
+          </div>
+        </dl>
+        <button
+          class="btn btn--lemon"
+          type="button"
+          data-ics
+          data-ics-title={title}
+          data-ics-start={event.dateISO}
+          data-ics-end={event.endISO}
+          data-ics-location={location}
+          data-ics-gcal={gcal}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="16" rx="3"></rect>
+            <path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"></path>
+          </svg>
+          {t.event.addToCalendar}
+        </button>
+      </article>
+
+      <article class="card">
+        <Lemon size={40} />
+        <h3>{t.event.where}</h3>
+        <p class="big">{event.venue.name}</p>
+        <p class="addr">
+          {event.venue.street}<br />
+          {event.venue.town}<br />
+          {event.venue.region}
+        </p>
+        <p class="note">{t.event.venueNote}</p>
+        <a class="btn btn--ghost" href={event.venue.mapsUrl} target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"></path>
+            <circle cx="12" cy="10" r="2.2"></circle>
+          </svg>
+          {t.event.directions}
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .title {
+    font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+  }
+
+  .amp {
+    color: var(--lemon-deep);
+  }
+
+  .cards {
+    display: grid;
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  .card {
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    padding: clamp(28px, 4vw, 44px) clamp(20px, 3vw, 36px);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  .card h3 {
+    font-size: 0.78rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--leaf);
+  }
+
+  .big {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.15;
+  }
+
+  .times {
+    display: flex;
+    gap: 28px;
+    margin: 6px 0 0;
+  }
+
+  .times div {
+    display: grid;
+  }
+
+  .times dt {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .times dd {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+  }
+
+  .addr {
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .note {
+    font-style: italic;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+  }
+
+  .card .btn {
+    margin-top: 12px;
+  }
+
+  @media (min-width: 720px) {
+    .cards {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,89 @@
+---
+import { event, type Locale } from '../config';
+import { getDict } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+const units = [
+  ['d', t.countdown.days],
+  ['h', t.countdown.hours],
+  ['m', t.countdown.minutes],
+  ['s', t.countdown.seconds],
+] as const;
+---
+
+<section class="section section--cream center" id="countdown" aria-labelledby="countdown-title">
+  <div class="container reveal">
+    <p class="eyebrow">{t.countdown.title}</p>
+    <h2 class="sr-only" id="countdown-title">{t.countdown.title}</h2>
+
+    <div
+      class="cd"
+      data-countdown
+      data-target={event.dateISO}
+      data-today={t.countdown.today}
+      data-past={t.countdown.past}
+      role="timer"
+      aria-live="off"
+    >
+      {
+        units.map(([key, label]) => (
+          <div class="unit">
+            <span class="num" data-cd={key}>
+              --
+            </span>
+            <span class="lbl">{label}</span>
+          </div>
+        ))
+      }
+    </div>
+    <p class="cd-msg" data-countdown-msg hidden></p>
+  </div>
+</section>
+
+<style>
+  .cd {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(8px, 2vw, 24px);
+    max-width: 640px;
+    margin: 28px auto 0;
+  }
+
+  .unit {
+    display: grid;
+    gap: 4px;
+    padding: clamp(12px, 2.4vw, 22px) 6px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  .num {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 6vw, 3.4rem);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .lbl {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .cd-msg {
+    margin-top: 24px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 2rem;
+  }
+
+  .cd[hidden] {
+    display: none;
+  }
+</style>

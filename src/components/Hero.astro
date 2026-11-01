@@ -1,0 +1,201 @@
+---
+import { Picture } from 'astro:assets';
+import playa from '../assets/photos/playa.jpg';
+import Lemon from './Lemon.astro';
+import LangSwitcher from './LangSwitcher.astro';
+import { event, type Locale } from '../config';
+import { getDict, formatEventDate } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+const date = formatEventDate(locale);
+---
+
+<header class="hero" id="top">
+  <LangSwitcher locale={locale} />
+
+  <span class="deco deco--tl"><Lemon size={120} /></span>
+  <span class="deco deco--br"><Lemon size={150} /></span>
+
+  <div class="container hero__grid">
+    <div class="hero__text">
+      <p class="eyebrow">{t.hero.kicker}</p>
+      <h1 class="names">
+        <span>{event.groom}</span>
+        <span class="amp" aria-hidden="true">&amp;</span>
+        <span class="sr-only">&amp;</span>
+        <span>{event.bride}</span>
+      </h1>
+      <p class="date">
+        <time datetime={event.dateISO}>{date}</time>
+      </p>
+      <p class="place">{t.hero.place}</p>
+    </div>
+
+    <figure class="arch">
+      <Picture
+        src={playa}
+        formats={['avif', 'webp']}
+        width={688}
+        alt={t.hero.photoAlt}
+        loading="eager"
+        fetchpriority="high"
+      />
+    </figure>
+  </div>
+
+  <a class="scroll" href="#countdown" aria-label={t.hero.scroll}>
+    <span>{t.hero.scroll}</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <path d="M12 4v16m0 0l-6-6m6 6l6-6"></path>
+    </svg>
+  </a>
+</header>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: grid;
+    align-content: center;
+    padding-block: clamp(84px, 12vw, 120px) clamp(72px, 10vw, 110px);
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .deco {
+    position: absolute;
+    z-index: -1;
+    opacity: 0.9;
+    line-height: 0;
+  }
+
+  .deco--tl {
+    top: -18px;
+    left: -26px;
+    transform: rotate(-20deg);
+  }
+
+  .deco--br {
+    right: -34px;
+    bottom: 36px;
+    transform: rotate(160deg) scaleX(-1);
+  }
+
+  .hero__grid {
+    display: grid;
+    gap: clamp(32px, 6vw, 72px);
+    align-items: center;
+  }
+
+  .hero__text {
+    text-align: center;
+  }
+
+  .names {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: clamp(3.4rem, 11vw, 7rem);
+    font-weight: 400;
+    line-height: 0.95;
+    margin-top: 18px;
+    letter-spacing: -0.01em;
+  }
+
+  .amp {
+    font-style: italic;
+    color: var(--lemon-deep);
+    font-size: 0.55em;
+    line-height: 1.1;
+    margin-block: 0.1em;
+  }
+
+  .date {
+    margin-top: 28px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.35rem, 2.6vw, 1.8rem);
+  }
+
+  .place {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* Foto en arco, el motivo clásico de las invitaciones italianas */
+  .arch {
+    margin: 0 auto;
+    width: min(78vw, 360px);
+    aspect-ratio: 3 / 4;
+    border-radius: 999px 999px var(--radius) var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    outline: 1px solid var(--line);
+    outline-offset: 10px;
+  }
+
+  .arch :global(picture) {
+    height: 100%;
+  }
+
+  .arch :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 35%;
+  }
+
+  .scroll {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink-soft);
+  }
+
+  .scroll svg {
+    width: 18px;
+    height: 18px;
+    animation: bob 1.8s ease-in-out infinite;
+  }
+
+  @keyframes bob {
+    50% {
+      transform: translateY(4px);
+    }
+  }
+
+  @media (min-width: 820px) {
+    .hero__grid {
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+
+    .hero__text {
+      text-align: left;
+    }
+
+    .names {
+      align-items: flex-start;
+    }
+
+    .arch {
+      width: min(100%, 420px);
+      margin-right: 0;
+    }
+  }
+</style>

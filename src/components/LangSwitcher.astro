@@ -1,0 +1,67 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { locales, type Locale } from '../config';
+import { getDict } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+---
+
+<nav class="lang" aria-label={t.lang.label}>
+  {
+    locales.map((l) => (
+      <a
+        href={getRelativeLocaleUrl(l)}
+        hreflang={l}
+        lang={l}
+        data-lang={l}
+        aria-current={l === locale ? 'page' : undefined}
+        title={t.lang[l]}
+      >
+        {l.toUpperCase()}
+      </a>
+    ))
+  }
+</nav>
+
+<style>
+  .lang {
+    position: absolute;
+    top: clamp(14px, 2.5vw, 26px);
+    right: var(--gutter);
+    z-index: 5;
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 999px;
+    background: rgb(255 253 248 / 0.75);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--line);
+  }
+
+  .lang a {
+    display: grid;
+    place-items: center;
+    min-width: 38px;
+    height: 32px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    color: var(--ink-soft);
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .lang a:hover {
+    color: var(--ink);
+  }
+
+  .lang a[aria-current='page'] {
+    background: var(--ink);
+    color: var(--ivory);
+  }
+</style>
