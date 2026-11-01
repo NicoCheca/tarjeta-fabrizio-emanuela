@@ -24,13 +24,13 @@ const t = getDict(locale);
 
     <!-- Fotos con paspartú blanco, como copias impresas sobre la mesa -->
     <div class="gallery">
-      <figure class="print reveal">
+      <figure class="print print--noche reveal">
         <Picture src={noche} formats={['avif', 'webp']} width={700} alt={t.story.alts.noche} loading="lazy" />
       </figure>
-      <figure class="print print--feature reveal">
+      <figure class="print print--feature print--anillo reveal">
         <Picture src={anillo} formats={['avif', 'webp']} width={900} alt={t.story.alts.anillo} loading="lazy" />
       </figure>
-      <figure class="print reveal">
+      <figure class="print print--atardecer reveal">
         <Picture src={atardecer} formats={['avif', 'webp']} width={700} alt={t.story.alts.atardecer} loading="lazy" />
       </figure>
     </div>
@@ -68,17 +68,26 @@ const t = getDict(locale);
     margin-top: 44px;
   }
 
+  /*
+    Paspartú blanco con la foto en posición absoluta adentro: el tamaño lo fija
+    el aspect-ratio del figure, nunca la imagen. Safari calculaba mal la
+    combinación aspect-ratio + height:100% y desbordaba la pantalla.
+  */
   .print {
+    position: relative;
     margin: 0;
+    width: 100%;
+    min-width: 0;
     padding: 10px 10px 14px;
     background: var(--paper);
     border: 1px solid var(--line);
     box-shadow: var(--shadow);
-    aspect-ratio: 4 / 5;
+    overflow: hidden;
   }
 
   .print :global(picture) {
-    height: 100%;
+    position: absolute;
+    inset: 10px 10px 14px;
   }
 
   .print :global(img) {
@@ -87,8 +96,29 @@ const t = getDict(locale);
     object-fit: cover;
   }
 
-  .print--feature {
+  /* En celular, cada foto con un formato cercano al original para no cortar caras */
+  .print--noche {
+    aspect-ratio: 5 / 6;
+  }
+
+  .print--noche :global(img) {
+    object-position: 50% 25%;
+  }
+
+  .print--anillo {
     aspect-ratio: 4 / 3;
+  }
+
+  .print--anillo :global(img) {
+    object-position: 50% 35%;
+  }
+
+  .print--atardecer {
+    aspect-ratio: 4 / 3;
+  }
+
+  .print--atardecer :global(img) {
+    object-position: 50% 30%;
   }
 
   @media (min-width: 720px) {
@@ -98,7 +128,7 @@ const t = getDict(locale);
     }
 
     .print {
-      aspect-ratio: 3 / 4;
+      aspect-ratio: 4 / 5;
       rotate: -2.5deg;
     }
 
@@ -107,7 +137,6 @@ const t = getDict(locale);
     }
 
     .print--feature {
-      aspect-ratio: 4 / 5;
       rotate: 0deg;
       z-index: 1;
     }
