@@ -1,5 +1,5 @@
 ---
-import LemonBranch from './LemonBranch.astro';
+import LemonSprig from './LemonSprig.astro';
 import type { Locale } from '../config';
 import { getDict, formatDeadline, contactLinks } from '../i18n';
 
@@ -17,7 +17,7 @@ const links = contactLinks(t.rsvp.message);
   <div class="container reveal">
     <div class="tile-frame frame">
       <div class="box">
-        <span class="branch" aria-hidden="true"><LemonBranch width={240} id="rsvp" /></span>
+        <span class="branch" aria-hidden="true"><LemonSprig width={170} id="rsvp" /></span>
         <p class="eyebrow">{t.rsvp.eyebrow}</p>
         <h2 class="title" id="rsvp-title">{t.rsvp.title}</h2>
         <p class="lead">{links.length ? text : t.rsvp.pending}</p>
@@ -54,10 +54,10 @@ const links = contactLinks(t.rsvp.message);
 
   .branch {
     position: absolute;
-    right: -70px;
-    top: -40px;
-    opacity: 0.55;
-    transform: rotate(-150deg) scaleY(-1);
+    right: 22px;
+    top: 16px;
+    opacity: 0.7;
+    transform: scaleX(-1);
     line-height: 0;
     pointer-events: none;
   }

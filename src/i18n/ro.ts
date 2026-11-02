@@ -32,6 +32,7 @@ export const ro: Dict = {
     reception: 'Petrecerea',
     at: 'ora',
     venueNote: 'Între dealurile Prosecco, patrimoniu UNESCO',
+    officiants: 'Oficiază primarul din Valdobbiadene și pastorul bisericii Emanuelei. Ceremonia și petrecerea în același loc.',
     timeTbd: 'Orele urmează să fie confirmate',
     addToCalendar: 'Salvează data',
     directions: 'Cum ajungi',
@@ -51,7 +52,7 @@ export const ro: Dict = {
     title: 'Informații utile',
     dress: {
       title: 'Dress code',
-      text: 'Elegant, în stil Dolce Vita: culori deschise, in, iar o notă de galben-lămâie este binevenită.',
+      text: 'Elegant.',
     },
     gifts: {
       title: 'Cadouri',
@@ -67,17 +68,12 @@ export const ro: Dict = {
       cta: 'Propune o melodie',
       message: 'Salut! O melodie care nu poate lipsi de la petrecere: ',
     },
-    stay: {
-      title: 'Unde dormiți',
-      text: 'Municipio 1815 și zona Valdobbiadene oferă camere și agroturisme. Rezervați din timp: august este sezon de vârf.',
-      cta: 'Vezi hotelul',
-    },
   },
   rsvp: {
     title: 'Confirmă prezența',
     text: 'Vă așteptăm! Confirmați până la {deadline} scriindu-ne pe WhatsApp.',
     eyebrow: 'Confirmare',
-    textNoDeadline: 'Vă așteptăm! Confirmați scriindu-ne pe WhatsApp.',
+    textNoDeadline: 'Vă așteptăm! Confirmați cât mai curând scriindu-ne pe WhatsApp.',
     pending: 'În curând vă spunem cum să confirmați prezența.',
     cta: 'WhatsApp',
     message:

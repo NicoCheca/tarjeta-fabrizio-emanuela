@@ -1,7 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import playa from '../assets/photos/playa.jpg';
-import LemonBranch from './LemonBranch.astro';
+import LemonSprig from './LemonSprig.astro';
 import Olive from './Olive.astro';
 import LangSwitcher from './LangSwitcher.astro';
 import { event, startISO, type Locale } from '../config';
@@ -19,8 +19,8 @@ const date = formatEventDate(locale);
   <div class="tiles" aria-hidden="true"></div>
   <LangSwitcher locale={locale} />
 
-  <span class="branch branch--tl" aria-hidden="true"><LemonBranch width={320} id="hero-a" /></span>
-  <span class="branch branch--br" aria-hidden="true"><LemonBranch width={300} id="hero-b" /></span>
+  <span class="branch branch--tl" aria-hidden="true"><LemonSprig width={300} id="hero-a" /></span>
+  <span class="branch branch--br" aria-hidden="true"><LemonSprig width={280} id="hero-b" /></span>
 
   <div class="container hero__grid">
     <div class="hero__text">
@@ -90,15 +90,15 @@ const date = formatEventDate(locale);
 
   /* La rama cuelga desde arriba a la izquierda, como en una pérgola de limones */
   .branch--tl {
-    top: calc(var(--tile) - 24px);
-    left: -70px;
-    transform: rotate(28deg);
+    top: calc(var(--tile) + 18px);
+    left: -40px;
+    transform: rotate(-150deg) scaleX(-1);
   }
 
   .branch--br {
-    right: -60px;
-    bottom: -30px;
-    transform: rotate(205deg) scaleY(-1);
+    right: 12px;
+    bottom: 30px;
+    transform: rotate(-6deg);
   }
 
   .hero__grid {
@@ -220,16 +220,18 @@ const date = formatEventDate(locale);
       height: auto;
     }
 
+    .branch :global(svg) {
+      width: 200px;
+    }
+
     .branch--tl {
-      left: -120px;
-      top: calc(var(--tile) - 60px);
-      opacity: 0.85;
+      left: -60px;
+      top: calc(var(--tile) - 10px);
     }
 
     .branch--br {
-      right: -110px;
-      bottom: -40px;
-      opacity: 0.85;
+      right: -50px;
+      bottom: 8px;
     }
 
     .hero {

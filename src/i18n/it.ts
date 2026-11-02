@@ -30,6 +30,7 @@ export const it = {
     reception: 'Festa',
     at: 'ore',
     venueNote: 'Tra le colline del Prosecco, patrimonio UNESCO',
+    officiants: 'Celebrano il Sindaco di Valdobbiadene e il pastore della chiesa di Emanuela. Cerimonia e festa nello stesso luogo.',
     timeTbd: 'Orari da confermare',
     addToCalendar: 'Salva la data',
     directions: 'Come arrivare',
@@ -49,7 +50,7 @@ export const it = {
     title: 'Informazioni utili',
     dress: {
       title: 'Dress code',
-      text: 'Elegante, in stile Dolce Vita: colori chiari, lino, e un tocco di giallo limone è il benvenuto.',
+      text: 'Elegante.',
     },
     gifts: {
       title: 'Regali',
@@ -65,17 +66,12 @@ export const it = {
       cta: 'Suggerisci una canzone',
       message: 'Ciao! Una canzone che non può mancare alla festa: ',
     },
-    stay: {
-      title: 'Dove dormire',
-      text: 'Il Municipio 1815 e la zona di Valdobbiadene offrono camere e agriturismi. Prenotate per tempo: agosto è alta stagione.',
-      cta: "Scopri l'hotel",
-    },
   },
   rsvp: {
     title: 'Conferma la tua presenza',
     text: 'Vi aspettiamo! Confermate entro il {deadline} scrivendoci su WhatsApp.',
     eyebrow: 'Conferma',
-    textNoDeadline: 'Vi aspettiamo! Confermate scrivendoci su WhatsApp.',
+    textNoDeadline: 'Vi aspettiamo! Confermate appena potete scrivendoci su WhatsApp.',
     pending: 'A breve vi diremo come confermare la presenza.',
     cta: 'WhatsApp',
     message:

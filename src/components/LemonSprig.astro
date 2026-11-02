@@ -1,0 +1,67 @@
+---
+/**
+ * Ramita de limonero en el estilo de la cerámica de mayólica: formas planas,
+ * contorno azul de un solo grosor, amarillo liso con un brillo y hojas oliva.
+ * El mismo lenguaje que el azulejo del marco. Decorativa: aria-hidden.
+ */
+interface Props {
+  /** Prefijo único por instancia para los ids internos. */
+  id: string;
+  class?: string;
+  width?: number;
+}
+const { id, class: className = '', width = 240 } = Astro.props;
+const leaf = `${id}-leaf`;
+const lemon = `${id}-lemon`;
+---
+
+<svg
+  class:list={['lemon-sprig', className]}
+  width={width}
+  height={(width * 2) / 3}
+  viewBox="0 0 240 160"
+  fill="none"
+  stroke="var(--blue)"
+  stroke-width="1.6"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+>
+  <defs>
+    <g id={leaf}>
+      <path d="M0 0C14-16 36-18 56-4 36 12 14 14 0 0Z" fill="#8fa35a"></path>
+      <path d="M5 0 50-3" stroke-width="1.2"></path>
+    </g>
+    <g id={lemon}>
+      <path d="M-36 0C-30-21-12-25 0-24 12-25 30-21 36 0 30 21 12 25 0 24-12 25-30 21-36 0Z" fill="var(--lemon)"></path>
+      <path d="M34-4q9 1 10 5-4 3-11 2z" fill="var(--lemon)"></path>
+      <path d="M-20-7q6-9 15-11" stroke="#fff6c2" stroke-width="3" opacity="0.85"></path>
+    </g>
+  </defs>
+
+  <!-- tallo -->
+  <path d="M6 152C40 112 92 70 150 52c32-10 58-14 82-16" stroke-width="2"></path>
+
+  <!-- hojas -->
+  <use href={`#${leaf}`} transform="translate(30 124) rotate(-40)"></use>
+  <use href={`#${leaf}`} transform="translate(52 104) rotate(28) scale(1 -1)"></use>
+  <use href={`#${leaf}`} transform="translate(82 80) rotate(-52)"></use>
+  <use href={`#${leaf}`} transform="translate(140 56) rotate(-18)"></use>
+  <use href={`#${leaf}`} transform="translate(160 50) rotate(34) scale(1 -1)"></use>
+  <use href={`#${leaf}`} transform="translate(204 42) rotate(-30) scale(0.85)"></use>
+  <use href={`#${leaf}`} transform="translate(214 40) rotate(22) scale(0.8 -0.8)"></use>
+
+  <!-- limones -->
+  <use href={`#${lemon}`} transform="translate(116 94) rotate(-22)"></use>
+  <use href={`#${lemon}`} transform="translate(186 94) rotate(18) scale(0.82)"></use>
+
+  <!-- azahar -->
+  <g transform="translate(96 44)">
+    <ellipse rx="3.6" ry="7" transform="rotate(0) translate(0 -8)" fill="var(--paper)"></ellipse>
+    <ellipse rx="3.6" ry="7" transform="rotate(72) translate(0 -8)" fill="var(--paper)"></ellipse>
+    <ellipse rx="3.6" ry="7" transform="rotate(144) translate(0 -8)" fill="var(--paper)"></ellipse>
+    <ellipse rx="3.6" ry="7" transform="rotate(216) translate(0 -8)" fill="var(--paper)"></ellipse>
+    <ellipse rx="3.6" ry="7" transform="rotate(288) translate(0 -8)" fill="var(--paper)"></ellipse>
+    <circle r="3" fill="var(--lemon)"></circle>
+  </g>
+</svg>

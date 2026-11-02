@@ -12,8 +12,8 @@ export const event = {
   /** Día del casamiento (YYYY-MM-DD). */
   date: '2027-08-28',
   /** Horarios en hora de Italia, formato HH:MM. Vacío = sin confirmar. */
-  ceremonyTime: '',
-  receptionTime: '',
+  ceremonyTime: '15:00',
+  receptionTime: '', // a continuación de la ceremonia, en el mismo lugar
   timeZone: 'Europe/Rome',
   /** Desfase horario de Italia en agosto (CEST). */
   utcOffset: '+02:00',

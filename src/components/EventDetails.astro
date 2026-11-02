@@ -94,6 +94,7 @@ const gcal =
             {event.venue.region}
           </p>
           <p class="note">{t.event.venueNote}</p>
+          <p class="officiants">{t.event.officiants}</p>
           <a class="btn btn--ghost" href={event.venue.mapsUrl} target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
               <path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"></path>
@@ -132,6 +133,8 @@ const gcal =
 
   .card__body {
     display: grid;
+    align-content: center;
+    height: calc(100% - var(--tile));
     justify-items: center;
     gap: 10px;
     padding: clamp(26px, 4vw, 40px) clamp(20px, 3vw, 36px);
@@ -173,6 +176,13 @@ const gcal =
     margin: 0;
     font-family: var(--font-display);
     font-size: 1.35rem;
+  }
+
+  .officiants {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    max-width: 34ch;
   }
 
   .tbd,

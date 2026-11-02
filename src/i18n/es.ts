@@ -32,6 +32,7 @@ export const es: Dict = {
     reception: 'Fiesta',
     at: 'a las',
     venueNote: 'Entre las colinas del Prosecco, patrimonio de la UNESCO',
+    officiants: 'Ofician el intendente de Valdobbiadene y el pastor de la iglesia de Emanuela. Ceremonia y fiesta en el mismo lugar.',
     timeTbd: 'Horarios a confirmar',
     addToCalendar: 'Agendar',
     directions: 'Cómo llegar',
@@ -51,7 +52,7 @@ export const es: Dict = {
     title: 'Información útil',
     dress: {
       title: 'Dress code',
-      text: 'Elegante, estilo Dolce Vita: colores claros, lino, y un toque de amarillo limón es bienvenido.',
+      text: 'Elegante.',
     },
     gifts: {
       title: 'Regalos',
@@ -67,17 +68,12 @@ export const es: Dict = {
       cta: 'Sugerir una canción',
       message: '¡Hola! Una canción que no puede faltar en la fiesta: ',
     },
-    stay: {
-      title: 'Dónde dormir',
-      text: 'El Municipio 1815 y la zona de Valdobbiadene tienen habitaciones y agriturismos. Reserven con tiempo: agosto es temporada alta.',
-      cta: 'Ver el hotel',
-    },
   },
   rsvp: {
     title: 'Confirmá tu asistencia',
     text: '¡Los esperamos! Confirmen antes del {deadline} escribiéndonos por WhatsApp.',
     eyebrow: 'Confirmación',
-    textNoDeadline: '¡Los esperamos! Confirmen escribiéndonos por WhatsApp.',
+    textNoDeadline: '¡Los esperamos! Confirmen en cuanto puedan escribiéndonos por WhatsApp.',
     pending: 'Pronto les contamos cómo confirmar la asistencia.',
     cta: 'WhatsApp',
     message:
