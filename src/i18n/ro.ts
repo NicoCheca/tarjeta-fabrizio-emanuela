@@ -56,7 +56,6 @@ export const ro: Dict = {
     items: {
       rsvp: ['Cum confirm prezența?', 'Pe WhatsApp, Emanuelei sau lui Fabrizio, cu butoanele de la finalul paginii: numele, numărul de persoane și eventuale intoleranțe.'],
       dress: ['Cum mă îmbrac?', 'Elegant.'],
-      stay: ['Unde dormim?', 'Hotelul Municipio 1815 este rezervat pentru invitați: vă scriem noi cu detaliile camerei.'],
       travel: ['Cum se ajunge?', 'Cel mai apropiat aeroport este Treviso (TSF), la circa 40 km; Veneția Marco Polo (VCE) este la circa 80 km. Cu trenul până la Treviso sau Conegliano, apoi autobuz sau taxi.'],
       lang: ['Site-ul este și în alte limbi?', 'Da: italiană, spaniolă și română, din selectorul din dreapta sus.'],
     },
@@ -64,9 +63,8 @@ export const ro: Dict = {
   story: {
     eyebrow: 'Povestea noastră',
     title: 'Noi doi',
-    text: 'De la prima privire la acel „da” pe plajă. Acum vrem să sărbătorim cu voi cea mai frumoasă zi.',
+    text: 'Din prima noastră conversație a existat ceva special, o senzație greu de explicat, ca și cum ne-am fi cunoscut de o viață. Așa a început povestea noastră. Iar după atâtea momente, călătorii și amintiri, în Maldive a venit cel mai important „da” din viețile noastre.',
     alts: {
-      noche: 'Fabrizio și Emanuela îmbrățișați seara pe un ponton deasupra mării',
       anillo: 'Emanuela arată inelul de logodnă zâmbind lângă Fabrizio',
       atardecer: 'Fabrizio și Emanuela în barcă la apus',
     },

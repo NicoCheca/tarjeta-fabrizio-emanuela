@@ -45,7 +45,7 @@ export const event = {
   ],
 
   /** Preguntas frecuentes a mostrar, en orden. Los textos están en i18n (faq.items). */
-  faq: ['rsvp', 'dress', 'stay', 'travel', 'lang'],
+  faq: ['rsvp', 'dress', 'travel', 'lang'],
 
   /** Fecha límite para confirmar (YYYY-MM-DD). Vacío = no se menciona. */
   rsvpDeadline: '',

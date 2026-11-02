@@ -1,6 +1,5 @@
 ---
 import { Picture } from 'astro:assets';
-import noche from '../assets/photos/noche.jpg';
 import anillo from '../assets/photos/anillo.jpg';
 import atardecer from '../assets/photos/atardecer.jpg';
 import type { Locale } from '../config';
@@ -24,10 +23,7 @@ const t = getDict(locale);
 
     <!-- Fotos con paspartú blanco, como copias impresas sobre la mesa -->
     <div class="gallery">
-      <figure class="print print--noche reveal">
-        <Picture src={noche} formats={['avif', 'webp']} width={700} alt={t.story.alts.noche} loading="lazy" />
-      </figure>
-      <figure class="print print--feature print--anillo reveal">
+      <figure class="print print--anillo reveal">
         <Picture src={anillo} formats={['avif', 'webp']} width={900} alt={t.story.alts.anillo} loading="lazy" />
       </figure>
       <figure class="print print--atardecer reveal">
@@ -97,14 +93,6 @@ const t = getDict(locale);
   }
 
   /* En celular, cada foto con un formato cercano al original para no cortar caras */
-  .print--noche {
-    aspect-ratio: 5 / 6;
-  }
-
-  .print--noche :global(img) {
-    object-position: 50% 25%;
-  }
-
   .print--anillo {
     aspect-ratio: 4 / 3;
   }
@@ -123,22 +111,20 @@ const t = getDict(locale);
 
   @media (min-width: 720px) {
     .gallery {
-      grid-template-columns: 1fr 1.35fr 1fr;
+      grid-template-columns: 1fr 1fr;
       align-items: center;
+      gap: 32px;
+      max-width: 760px;
+      margin-inline: auto;
     }
 
     .print {
       aspect-ratio: 4 / 5;
-      rotate: -2.5deg;
+      rotate: -2deg;
     }
 
     .print:last-child {
-      rotate: 2.5deg;
-    }
-
-    .print--feature {
-      rotate: 0deg;
-      z-index: 1;
+      rotate: 2deg;
     }
   }
 </style>

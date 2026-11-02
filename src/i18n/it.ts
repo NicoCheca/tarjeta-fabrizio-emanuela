@@ -54,7 +54,6 @@ export const it = {
     items: {
       rsvp: ['Come confermo la presenza?', 'Scrivendo su WhatsApp a Emanuela o a Fabrizio con i pulsanti in fondo alla pagina: nome, numero di persone e eventuali intolleranze.'],
       dress: ['Come devo vestirmi?', 'Elegante.'],
-      stay: ['Dove dormiamo?', 'L’hotel Municipio 1815 è riservato per gli invitati: vi scriveremo noi con i dettagli della camera.'],
       travel: ['Come si arriva?', 'L’aeroporto più comodo è Treviso (TSF), a circa 40 km; Venezia Marco Polo (VCE) è a circa 80 km. In treno fino a Treviso o Conegliano, poi bus o taxi.'],
       lang: ['Il sito è in altre lingue?', 'Sì: italiano, spagnolo e romeno, dal selettore in alto a destra.'],
     },
@@ -62,9 +61,8 @@ export const it = {
   story: {
     eyebrow: 'La nostra storia',
     title: 'Noi due',
-    text: 'Dal primo sguardo a quel «sì» sulla spiaggia. Ora vogliamo festeggiare con voi il giorno più bello.',
+    text: 'Dalla nostra prima conversazione c’è stato qualcosa di speciale, una sensazione difficile da spiegare, come se ci conoscessimo da sempre. Così è iniziata la nostra storia. E dopo tanti momenti, viaggi e ricordi, alle Maldive è arrivato il «sì» più importante della nostra vita.',
     alts: {
-      noche: 'Fabrizio ed Emanuela abbracciati di sera su un pontile sul mare',
       anillo: "Emanuela mostra l'anello di fidanzamento sorridendo accanto a Fabrizio",
       atardecer: 'Fabrizio ed Emanuela in barca al tramonto',
     },

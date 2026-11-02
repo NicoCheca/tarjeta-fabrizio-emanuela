@@ -56,7 +56,6 @@ export const es: Dict = {
     items: {
       rsvp: ['¿Cómo confirmo?', 'Por WhatsApp a Emanuela o a Fabrizio con los botones del final de la página: nombre, cantidad de personas y alergias o intolerancias.'],
       dress: ['¿Cómo me visto?', 'Elegante.'],
-      stay: ['¿Dónde dormimos?', 'El hotel Municipio 1815 está reservado para los invitados: ellos les escriben con los detalles de la habitación.'],
       travel: ['¿Cómo se llega?', 'El aeropuerto más cómodo es Treviso (TSF), a unos 40 km; Venecia Marco Polo (VCE) está a unos 80 km. En tren hasta Treviso o Conegliano y después bus o taxi.'],
       lang: ['¿El sitio está en otros idiomas?', 'Sí: italiano, español y rumano, con el selector de arriba a la derecha.'],
     },
@@ -64,9 +63,8 @@ export const es: Dict = {
   story: {
     eyebrow: 'Nuestra historia',
     title: 'Nosotros',
-    text: 'De la primera mirada a ese «sí» en la playa. Ahora queremos festejar con ustedes el día más lindo.',
+    text: 'Desde nuestra primera conversación hubo algo especial, una sensación difícil de explicar, como si nos conociéramos de toda la vida. Así empezó nuestra historia. Y después de tantos momentos, viajes y recuerdos, llegó en Maldivas el «sí» más importante de nuestras vidas.',
     alts: {
-      noche: 'Fabrizio y Emanuela abrazados de noche en un muelle sobre el mar',
       anillo: 'Emanuela muestra el anillo de compromiso sonriendo junto a Fabrizio',
       atardecer: 'Fabrizio y Emanuela en un barco al atardecer',
     },
