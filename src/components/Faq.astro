@@ -1,0 +1,85 @@
+---
+/** Preguntas frecuentes desplegables. Las preguntas y respuestas viven en i18n. */
+import { event, type Locale } from '../config';
+import { getDict } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+const items = event.faq.map((k) => t.faq.items[k as keyof typeof t.faq.items]);
+---
+
+<section class="section section--cream center" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="reveal">
+      <p class="eyebrow">{t.faq.eyebrow}</p>
+      <h2 class="title" id="faq-title">{t.faq.title}</h2>
+    </div>
+
+    <div class="list reveal">
+      {
+        items.map(([q, a]) => (
+          <details>
+            <summary>
+              <span>{q}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </summary>
+            <p>{a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .list {
+    max-width: 720px;
+    margin: 36px auto 0;
+    text-align: left;
+    background: var(--paper);
+    border: 1px solid var(--blue);
+  }
+
+  details + details {
+    border-top: 1px solid var(--line);
+  }
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 22px;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary svg {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    color: var(--blue);
+    transition: transform 0.25s ease;
+  }
+
+  details[open] summary svg {
+    transform: rotate(180deg);
+  }
+
+  details p {
+    padding: 0 22px 20px;
+    color: var(--ink-soft);
+  }
+</style>

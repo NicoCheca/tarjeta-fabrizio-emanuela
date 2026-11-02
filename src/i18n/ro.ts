@@ -8,7 +8,10 @@ export const ro: Dict = {
       'Ne căsătorim! Sâmbătă, 28 august 2027, la Boutique Hotel Municipio 1815, Valdobbiadene. Toate informațiile și confirmarea.',
   },
   lang: { label: 'Limba', it: 'Italiano', es: 'Español', ro: 'Română' },
+  nav: { event: 'Ziua', story: 'Noi', info: 'Info', rsvp: 'Confirmă' },
   hero: {
+    cta: 'Confirmă prezența',
+    ctaMap: 'Cum ajungi',
     kicker: 'Ne căsătorim',
     place: 'Valdobbiadene, Italia',
     tagline: 'Sărbătorim la Dolce Vita',
@@ -34,8 +37,29 @@ export const ro: Dict = {
     venueNote: 'Între dealurile Prosecco, patrimoniu UNESCO',
     officiants: 'Oficiază primarul din Valdobbiadene și pastorul bisericii Emanuelei. Ceremonia și petrecerea în același loc.',
     timeTbd: 'Orele urmează să fie confirmate',
+    travel: {
+      title: 'Cum ajungi',
+      text: 'Aeroporturi: Treviso (TSF) la circa 40 km, Veneția Marco Polo (VCE) la circa 80 km. Cu trenul până la Treviso sau Conegliano, apoi autobuz sau taxi. Valdobbiadene nu are gară.',
+    },
     addToCalendar: 'Salvează data',
     directions: 'Cum ajungi',
+  },
+  schedule: {
+    eyebrow: 'Programul',
+    title: 'Ziua nunții',
+    later: 'În continuare',
+    items: { ceremony: 'Ceremonia', party: 'Petrecerea' },
+  },
+  faq: {
+    eyebrow: 'Întrebări frecvente',
+    title: 'Întrebări și răspunsuri',
+    items: {
+      rsvp: ['Cum confirm prezența?', 'Pe WhatsApp, Emanuelei sau lui Fabrizio, cu butoanele de la finalul paginii: numele, numărul de persoane și eventuale intoleranțe.'],
+      dress: ['Cum mă îmbrac?', 'Elegant.'],
+      stay: ['Unde dormim?', 'Hotelul Municipio 1815 este rezervat pentru invitați: vă scriem noi cu detaliile camerei.'],
+      travel: ['Cum se ajunge?', 'Cel mai apropiat aeroport este Treviso (TSF), la circa 40 km; Veneția Marco Polo (VCE) este la circa 80 km. Cu trenul până la Treviso sau Conegliano, apoi autobuz sau taxi.'],
+      lang: ['Site-ul este și în alte limbi?', 'Da: italiană, spaniolă și română, din selectorul din dreapta sus.'],
+    },
   },
   story: {
     eyebrow: 'Povestea noastră',

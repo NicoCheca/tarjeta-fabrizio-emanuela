@@ -35,6 +35,18 @@ export const event = {
     { name: 'Fabrizio', whatsapp: '+39 351 945 1955' },
   ],
 
+  /**
+   * Programa del día. `time` vacío = "a seguire". Las etiquetas están en i18n (schedule.items).
+   * Solo lo confirmado por los novios.
+   */
+  schedule: [
+    { key: 'ceremony', time: '15:00' },
+    { key: 'party', time: '' },
+  ],
+
+  /** Preguntas frecuentes a mostrar, en orden. Los textos están en i18n (faq.items). */
+  faq: ['rsvp', 'dress', 'stay', 'travel', 'lang'],
+
   /** Fecha límite para confirmar (YYYY-MM-DD). Vacío = no se menciona. */
   rsvpDeadline: '',
 

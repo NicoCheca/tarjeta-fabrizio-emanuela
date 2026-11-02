@@ -6,7 +6,10 @@ export const it = {
       'Ci sposiamo! Sabato 28 agosto 2027 al Boutique Hotel Municipio 1815, Valdobbiadene. Tutte le informazioni e la conferma.',
   },
   lang: { label: 'Lingua', it: 'Italiano', es: 'Español', ro: 'Română' },
+  nav: { event: 'Il giorno', story: 'Noi', info: 'Info', rsvp: 'Conferma' },
   hero: {
+    cta: 'Conferma la presenza',
+    ctaMap: 'Come arrivare',
     kicker: 'Ci sposiamo',
     place: 'Valdobbiadene, Italia',
     tagline: 'Celebriamo la Dolce Vita',
@@ -32,8 +35,29 @@ export const it = {
     venueNote: 'Tra le colline del Prosecco, patrimonio UNESCO',
     officiants: 'Celebrano il Sindaco di Valdobbiadene e il pastore della chiesa di Emanuela. Cerimonia e festa nello stesso luogo.',
     timeTbd: 'Orari da confermare',
+    travel: {
+      title: 'Come arrivare',
+      text: 'Aeroporti: Treviso (TSF) a circa 40 km, Venezia Marco Polo (VCE) a circa 80 km. In treno fino a Treviso o Conegliano, poi bus o taxi. Valdobbiadene non ha stazione.',
+    },
     addToCalendar: 'Salva la data',
     directions: 'Come arrivare',
+  },
+  schedule: {
+    eyebrow: 'Il programma',
+    title: 'La giornata',
+    later: 'A seguire',
+    items: { ceremony: 'Cerimonia', party: 'Festa' },
+  },
+  faq: {
+    eyebrow: 'Domande frequenti',
+    title: 'Domande e risposte',
+    items: {
+      rsvp: ['Come confermo la presenza?', 'Scrivendo su WhatsApp a Emanuela o a Fabrizio con i pulsanti in fondo alla pagina: nome, numero di persone e eventuali intolleranze.'],
+      dress: ['Come devo vestirmi?', 'Elegante.'],
+      stay: ['Dove dormiamo?', 'L’hotel Municipio 1815 è riservato per gli invitati: vi scriveremo noi con i dettagli della camera.'],
+      travel: ['Come si arriva?', 'L’aeroporto più comodo è Treviso (TSF), a circa 40 km; Venezia Marco Polo (VCE) è a circa 80 km. In treno fino a Treviso o Conegliano, poi bus o taxi.'],
+      lang: ['Il sito è in altre lingue?', 'Sì: italiano, spagnolo e romeno, dal selettore in alto a destra.'],
+    },
   },
   story: {
     eyebrow: 'La nostra storia',

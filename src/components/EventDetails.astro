@@ -1,5 +1,6 @@
 ---
 import Olive from './Olive.astro';
+import Schedule from './Schedule.astro';
 import { event, startISO, endISO, hasTime, dateEnd, type Locale } from '../config';
 import { getDict, formatEventDate } from '../i18n';
 
@@ -95,6 +96,12 @@ const gcal =
           </p>
           <p class="note">{t.event.venueNote}</p>
           <p class="officiants">{t.event.officiants}</p>
+          <p class="travel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <path d="M2.5 19h19M3.8 13.5l16.7-6.2a1.5 1.5 0 0 1 1 2.8L15 13l-3.3 4.5-1.9-.6.8-4.2-4-.1-1.9 1.4-1-.5z"></path>
+            </svg>
+            <span>{t.event.travel.text}</span>
+          </p>
           <a class="btn btn--ghost" href={event.venue.mapsUrl} target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
               <path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"></path>
@@ -105,6 +112,8 @@ const gcal =
         </div>
       </article>
     </div>
+
+    <Schedule locale={locale} />
   </div>
 </section>
 
@@ -176,6 +185,27 @@ const gcal =
     margin: 0;
     font-family: var(--font-display);
     font-size: 1.35rem;
+  }
+
+  .travel {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    text-align: left;
+    max-width: 40ch;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+  }
+
+  .travel svg {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    color: var(--blue);
+    margin-top: 2px;
   }
 
   .officiants {

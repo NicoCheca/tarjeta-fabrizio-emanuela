@@ -14,6 +14,14 @@ document.querySelectorAll<HTMLAnchorElement>('[data-lang]').forEach((a) => {
   });
 });
 
+/* ---------- Barra fija de celular: aparece al pasar la portada ---------- */
+const dock = document.querySelector<HTMLElement>('[data-dock]');
+if (dock) {
+  const onScroll = () => dock.classList.toggle('show', window.scrollY > window.innerHeight * 0.7);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
 /* ---------- Contador ---------- */
 const cd = document.querySelector<HTMLElement>('[data-countdown]');
 if (cd) {

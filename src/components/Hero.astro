@@ -4,6 +4,7 @@ import playa from '../assets/photos/playa.jpg';
 import LemonSprig from './LemonSprig.astro';
 import Olive from './Olive.astro';
 import LangSwitcher from './LangSwitcher.astro';
+import Nav from './Nav.astro';
 import { event, startISO, type Locale } from '../config';
 import { getDict, formatEventDate } from '../i18n';
 
@@ -17,6 +18,7 @@ const date = formatEventDate(locale);
 
 <header class="hero" id="top">
   <div class="tiles" aria-hidden="true"></div>
+  <Nav locale={locale} />
   <LangSwitcher locale={locale} />
 
   <span class="branch branch--tl" aria-hidden="true"><LemonSprig width={300} id="hero-a" /></span>
@@ -41,6 +43,10 @@ const date = formatEventDate(locale);
         <time datetime={startISO}>{date}</time>
       </p>
       <p class="place">{t.hero.place}</p>
+      <div class="ctas">
+        <a class="btn btn--lemon" href="#rsvp">{t.hero.cta}</a>
+        <a class="btn btn--ghost" href={event.venue.mapsUrl} target="_blank" rel="noopener">{t.hero.ctaMap}</a>
+      </div>
     </div>
 
     <div class="arch-frame">
@@ -152,6 +158,14 @@ const date = formatEventDate(locale);
     color: var(--ink-soft);
   }
 
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
   /* Foto en arco con marco de mayólica: el motivo clásico de la papelería italiana */
   .arch-frame {
     margin: 0 auto;
@@ -254,6 +268,10 @@ const date = formatEventDate(locale);
 
     .rule {
       margin-inline: 0;
+    }
+
+    .ctas {
+      justify-content: flex-start;
     }
 
     .arch-frame {

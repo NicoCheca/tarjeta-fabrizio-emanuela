@@ -1,0 +1,105 @@
+---
+/** Programa del día en una línea: hora y momento. Solo lo confirmado. */
+import { event, type Locale } from '../config';
+import { getDict } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+const items = event.schedule.map((s) => ({
+  time: s.time || t.schedule.later,
+  label: t.schedule.items[s.key as keyof typeof t.schedule.items],
+  tbd: !s.time,
+}));
+---
+
+<div class="schedule">
+  <p class="eyebrow">{t.schedule.eyebrow}</p>
+  <ol class="line">
+    {
+      items.map((i) => (
+        <li>
+          <span class="dot" aria-hidden="true" />
+          <span class:list={['time', { tbd: i.tbd }]}>{i.time}</span>
+          <span class="label">{i.label}</span>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<style>
+  .schedule {
+    margin-top: 44px;
+  }
+
+  .line {
+    list-style: none;
+    margin: 18px auto 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px 44px;
+    max-width: 720px;
+  }
+
+  .line li {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: 2px;
+    min-width: 120px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--lemon);
+    border: 1.5px solid var(--blue);
+    margin-bottom: 6px;
+  }
+
+  .time {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--blue);
+  }
+
+  .time.tbd {
+    font-style: italic;
+    font-size: 1.2rem;
+  }
+
+  .label {
+    font-size: 0.74rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* línea que une los puntos en escritorio */
+  @media (min-width: 720px) {
+    .line {
+      position: relative;
+    }
+
+    .line::before {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 15%;
+      right: 15%;
+      border-top: 1px solid var(--blue);
+      opacity: 0.5;
+    }
+
+    .line li {
+      z-index: 1;
+    }
+  }
+</style>

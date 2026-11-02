@@ -38,6 +38,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 24px;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -274,6 +275,12 @@ button {
 
   * {
     animation: none !important;
+  }
+}
+
+@media (max-width: 819px) {
+  body {
+    padding-bottom: 72px;
   }
 }
 

@@ -5,6 +5,7 @@ import Countdown from './Countdown.astro';
 import EventDetails from './EventDetails.astro';
 import Story from './Story.astro';
 import Info from './Info.astro';
+import Faq from './Faq.astro';
 import Rsvp from './Rsvp.astro';
 import Footer from './Footer.astro';
 import type { Locale } from '../config';
@@ -22,6 +23,7 @@ const { locale } = Astro.props;
     <EventDetails locale={locale} />
     <Story locale={locale} />
     <Info locale={locale} />
+    <Faq locale={locale} />
     <Rsvp locale={locale} />
   </main>
   <Footer locale={locale} />
