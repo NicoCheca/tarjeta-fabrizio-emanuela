@@ -117,8 +117,22 @@ const date = formatEventDate(locale);
     text-align: center;
   }
 
+  /* "Ci sposiamo" más grande que los demás rótulos: es el anuncio */
+  .hero__text .eyebrow {
+    font-size: clamp(0.95rem, 2.6vw, 1.2rem);
+    gap: 14px;
+  }
+
   .eyebrow :global(.olive) {
     opacity: 0.9;
+    width: 46px;
+    height: auto;
+  }
+
+  @media (min-width: 720px) {
+    .eyebrow :global(.olive) {
+      width: 64px;
+    }
   }
 
   .names {
@@ -239,8 +253,12 @@ const date = formatEventDate(locale);
     }
 
     .branch--tl {
-      left: -60px;
-      top: calc(var(--tile) - 10px);
+      left: -55px;
+      top: calc(var(--tile) - 40px);
+    }
+
+    .branch--tl :global(svg) {
+      width: 160px;
     }
 
     .branch--br {
@@ -260,6 +278,17 @@ const date = formatEventDate(locale);
 
     .hero__text {
       text-align: left;
+      padding-top: 48px;
+    }
+
+    /* La rama sube y se corre para no tapar el "Ci sposiamo", ahora más grande */
+    .branch--tl {
+      left: -120px;
+      top: calc(var(--tile) - 90px);
+    }
+
+    .branch--tl :global(svg) {
+      width: 260px;
     }
 
     .names {
