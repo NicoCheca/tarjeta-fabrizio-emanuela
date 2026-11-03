@@ -89,6 +89,8 @@ export const ro: Dict = {
       text: 'Ce melodie nu poate lipsi de la petrecere? Propune-o!',
       cta: 'Propune o melodie',
       message: 'Salut! O melodie care nu poate lipsi de la petrecere: ',
+      spotifyText: 'Coloana sonoră a petrecerii o scriem împreună: ascultați playlistul și adăugați melodiile voastre.',
+      spotifyCta: 'Deschide playlistul pe Spotify',
     },
   },
   rsvp: {

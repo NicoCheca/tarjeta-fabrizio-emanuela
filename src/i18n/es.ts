@@ -89,6 +89,8 @@ export const es: Dict = {
       text: '¿Qué canción no puede faltar en la fiesta? ¡Sugerila!',
       cta: 'Sugerir una canción',
       message: '¡Hola! Una canción que no puede faltar en la fiesta: ',
+      spotifyText: 'La banda de sonido de la fiesta la armamos entre todos: escuchen la playlist y sumen sus canciones.',
+      spotifyCta: 'Abrir la playlist en Spotify',
     },
   },
   rsvp: {

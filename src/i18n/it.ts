@@ -87,6 +87,8 @@ export const it = {
       text: 'Quale canzone non può mancare alla festa? Suggeriscila!',
       cta: 'Suggerisci una canzone',
       message: 'Ciao! Una canzone che non può mancare alla festa: ',
+      spotifyText: 'La colonna sonora della festa la scriviamo insieme: ascoltate la playlist e aggiungete le vostre canzoni.',
+      spotifyCta: 'Apri la playlist su Spotify',
     },
   },
   rsvp: {

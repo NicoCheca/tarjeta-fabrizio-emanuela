@@ -51,7 +51,7 @@ export const event = {
   rsvpDeadline: '',
 
   /** Playlist colaborativa (Spotify). Vacío = se sugieren canciones por WhatsApp. */
-  playlistUrl: '',
+  playlistUrl: 'https://open.spotify.com/playlist/5L6hSm9ATje1Edz7GXsRWa',
 
   /** Datos para regalos. IBAN vacío = la tarjeta de regalos no se muestra. */
   gift: {

@@ -7,7 +7,10 @@ interface Props {
 }
 const { locale } = Astro.props;
 const t = getDict(locale);
+// Con playlist propia se invita a escucharla; sin ella, a sugerir canciones por WhatsApp
 const playlistHref = event.playlistUrl || contactLinks(t.info.playlist.message)[0]?.href;
+const playlistText = event.playlistUrl ? t.info.playlist.spotifyText : t.info.playlist.text;
+const playlistCta = event.playlistUrl ? t.info.playlist.spotifyCta : t.info.playlist.cta;
 const showGift = Boolean(event.gift.iban);
 ---
 
@@ -71,9 +74,9 @@ const showGift = Boolean(event.gift.iban);
           </svg>
         </span>
         <h3>{t.info.playlist.title}</h3>
-        <p>{t.info.playlist.text}</p>
+        <p>{playlistText}</p>
         <a class="btn btn--ghost" href={playlistHref} target="_blank" rel="noopener">
-          {t.info.playlist.cta}
+          {playlistCta}
         </a>
       </article>
         )

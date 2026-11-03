@@ -18,7 +18,7 @@ nunca muestra un dato inventado.
 | Contactos de WhatsApp para confirmar (uno o más) | `contacts` (nombre y número con código de país) | La sección de confirmación avisa que pronto se informa |
 | Fecha límite para confirmar | `rsvpDeadline` | No se menciona |
 | IBAN y titular para regalos | `gift` | La tarjeta de regalos no se muestra |
-| Playlist de Spotify | `playlistUrl` | Se sugieren canciones por WhatsApp |
+| Playlist de Spotify | `playlistUrl` | La tarjeta de música invita a sugerir canciones por WhatsApp |
 | URL pública del sitio | `site` | Es la única fuente: de ahí salen `site` y `base` de Astro |
 
 Los textos de cada idioma están en `src/i18n/it.ts`, `es.ts` y `ro.ts`.
