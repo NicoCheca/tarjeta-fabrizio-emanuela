@@ -1,0 +1,81 @@
+---
+/**
+ * Barra fija de celular: aparece al pasar la portada, con "Conferma" siempre a mano.
+ * Va al final de la página, fuera de cualquier contexto de apilado, para que
+ * ninguna foto ni marco la tape.
+ */
+import type { Locale } from '../config';
+import { getDict } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+const links = [
+  ['#event', t.nav.event],
+  ['#story', t.nav.story],
+  ['#info', t.nav.info],
+] as const;
+---
+
+<nav class="dock" data-dock aria-label={t.nav.rsvp}>
+  {links.map(([href, label]) => <a href={href}>{label}</a>)}
+  <a href="#rsvp" class="dock__rsvp">{t.nav.rsvp}</a>
+</nav>
+
+<style>
+  .dock {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    z-index: 100;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    padding: 6px;
+    border-radius: 999px;
+    background: rgb(255 253 248 / 0.92);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    transform: translateY(calc(100% + 24px));
+    transition: transform 0.35s ease;
+  }
+
+  .dock.show {
+    transform: none;
+  }
+
+  .dock a {
+    display: grid;
+    place-items: center;
+    min-height: 40px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--ink-soft);
+  }
+
+  .dock__rsvp {
+    background: var(--lemon);
+    color: var(--ink) !important;
+    border: 1px solid var(--lemon-deep);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dock {
+      transition: none;
+    }
+  }
+
+  @media (min-width: 820px) {
+    .dock {
+      display: none;
+    }
+  }
+</style>
