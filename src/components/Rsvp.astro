@@ -48,22 +48,33 @@ const links = contactLinks(t.rsvp.message);
   .box {
     position: relative;
     overflow: hidden;
-    padding: clamp(40px, 7vw, 80px) clamp(22px, 5vw, 64px);
+    /* arriba queda lugar para la rama, que entra desde el borde izquierdo */
+    padding: calc(clamp(40px, 7vw, 80px) + 84px) clamp(22px, 5vw, 64px) clamp(40px, 7vw, 80px);
     background: var(--paper);
-  }
-
-  .branch {
-    position: absolute;
-    right: 22px;
-    top: 16px;
-    opacity: 0.7;
-    transform: scaleX(-1);
-    line-height: 0;
-    pointer-events: none;
   }
 
   .box > * {
     position: relative;
+  }
+
+  /* La rama asoma desde el costado: el tallo nace fuera del cuadro y lo recorta el borde */
+  .box > .branch {
+    position: absolute;
+    left: -30px;
+    top: 6px;
+    opacity: 0.85;
+    line-height: 0;
+    pointer-events: none;
+  }
+
+  @media (min-width: 720px) {
+    .box {
+      padding-top: clamp(40px, 7vw, 80px);
+    }
+
+    .box > .branch {
+      top: 18px;
+    }
   }
 
   .buttons {
