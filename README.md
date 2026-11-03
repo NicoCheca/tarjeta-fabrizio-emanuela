@@ -39,8 +39,10 @@ Para GitHub Pages ya está el workflow en `.github/workflows/deploy.yml`:
 
 1. Subir el repo a GitHub.
 2. En *Settings → Pages* elegir **GitHub Actions** como origen.
-3. Con dominio propio: poner la URL en `site` de `src/config.ts` y crear `public/CNAME` con el dominio.
-   Para `usuario.github.io/repo` alcanza con que `site` incluya `/repo`.
+3. Dominio propio: `matrimonioemanuelafabrizio.com`. Está en `site` de `src/config.ts`, en `public/CNAME`
+   y en Settings → Pages del repo (con el deploy por workflow, lo que manda es esa configuración).
+   En GoDaddy, el dominio apunta a GitHub Pages con cuatro registros A (185.199.108.153, .109.153, .110.153, .111.153)
+   y un CNAME `www` → `nicocheca.github.io`. Sin dominio, `site` vuelve a `https://usuario.github.io/repo`.
 
 ## Diseño
 

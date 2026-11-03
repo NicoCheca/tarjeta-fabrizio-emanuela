@@ -63,7 +63,7 @@ export const event = {
    * URL pública del sitio. Es la única fuente: astro.config toma de acá `site` y `base`.
    * Con dominio propio: 'https://ejemplo.com' y crear public/CNAME.
    */
-  site: 'https://nicocheca.github.io/tarjeta-fabrizio-emanuela',
+  site: 'https://matrimonioemanuelafabrizio.com',
 } as const;
 
 export type Locale = 'it' | 'es' | 'ro';
